@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隐私政策 | 律 (Lyu) 系列</title>
+    <style>
+        :root {
+            --blue: #3399FF;
+            --text: #1F2937;
+            --muted: #6B7280;
+            --bg: #FFFFFF;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 32px 20px 60px;
+        }
+        h1 { font-size: 2rem; margin: 0 0 12px; }
+        h2 { font-size: 1.25rem; margin: 28px 0 12px; }
+        p { margin: 0 0 12px; color: var(--muted); }
+        ul { margin: 8px 0 16px 20px; color: var(--muted); }
+        a { color: var(--blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0 16px; }
+        th, td { border: 1px solid rgba(0,0,0,0.08); padding: 10px; text-align: left; color: var(--muted); }
+        th { background: rgba(51,153,255,0.06); color: var(--text); }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(51, 153, 255, 0.1);
+            color: var(--blue);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 8px;
+        }
+        .title-row h1 {
+            margin: 0;
+            line-height: 1.1;
+        }
+        .back-arrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            color: var(--text-sub);
+            background: rgba(51, 153, 255, 0.06);
+            border: 1px solid rgba(51, 153, 255, 0.2);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            margin-left: -40px; /* 左移一些，与页面边缘更齐 */
+        }
+        .back-arrow:hover {
+            color: var(--blue);
+            border-color: var(--blue);
+            background: rgba(51, 153, 255, 0.12);
+        }
+        .card {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+        }
+        .footer-note {
+            margin-top: 24px;
+            color: #9CA3AF;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="badge">适用于 HarmonyOS / iOS / Android</div>
+    <div class="title-row">
+        <a class="back-arrow" href="index.html" aria-label="返回首页">←</a>
+        <h1>隐私政策</h1>
+    </div>
+    <p>欢迎使用「律 (Lyu) 系列」应用。本隐私政策说明我们如何收集、使用、存储和保护您的个人信息，以及您对个人信息的权利。若您不同意本政策的任何内容，请停止使用本产品。</p>
+
+    <div class="card">
+        <h2>1. 我们收集的信息类型与用途</h2>
+        <p>我们坚持最小必要原则，按功能场景收集信息，并在使用前征得同意。</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>信息类型</th>
+                    <th>用途与场景</th>
+                    <th>是否必需</th>
+                    <th>处理方式与期限</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>设备信息（机型、系统版本、设备标识的匿名/随机化处理）</td>
+                    <td>用于故障排查、适配与性能优化</td>
+                    <td>必要</td>
+                    <td>优先本地处理；如需上传仅用于诊断，达成目的后删除或匿名化</td>
+                </tr>
+                <tr>
+                    <td>崩溃日志与运行日志</td>
+                    <td>提升稳定性、定位问题</td>
+                    <td>必要</td>
+                    <td>最短期限保存，问题解决后删除或匿名化</td>
+                </tr>
+                <tr>
+                    <td>账号/联系方式（如有账号体系时）</td>
+                    <td>登录、找回、服务通知</td>
+                    <td>可选</td>
+                    <td>保存至账号注销或您申请删除；不再需要时删除或匿名化</td>
+                </tr>
+                <tr>
+                    <td>可选统计数据（去标识化）</td>
+                    <td>改进产品体验与功能</td>
+                    <td>可选（征得同意后）</td>
+                    <td>仅保留汇总或匿名化结果</td>
+                </tr>
+                <tr>
+                    <td>传感器/定位等敏感权限数据</td>
+                    <td>仅在对应功能场景使用（需您同意并可随时关闭）</td>
+                    <td>可选</td>
+                    <td>默认本地处理，不上传；如需上传会另行说明并征得同意</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2. 存储与保护</h2>
+        <ul>
+            <li>存储位置：优先本地；如需云端，会提前告知并征得同意。</li>
+            <li>保存期限：仅保留至实现目的所必需的最短时间；到期删除或匿名化。</li>
+            <li>安全措施：传输加密、访问控制、最小权限原则。</li>
+            <li>跨境传输：目前不进行跨境传输；如需跨境，会再次告知并征得同意。</li>
+        </ul>
+
+        <h2>3. 共享、转让与公开披露</h2>
+        <ul>
+            <li>默认不与第三方共享个人信息，不出售个人信息。</li>
+            <li>如因合作或法律法规要求需共享/披露，会事先告知并征得同意，或按法律规定执行。</li>
+            <li>转让仅在合规且经您同意的前提下进行。</li>
+        </ul>
+
+        <h2>4. 第三方服务与 SDK（占位，接入后请补充）</h2>
+        <p>如接入第三方服务，会在此列明并在应用内提示：</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>第三方/SDK 名称</th>
+                    <th>用途</th>
+                    <th>收集/传输的数据类型</th>
+                    <th>官网/隐私政策</th>
+                    <th>是否出境/加密方式</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>暂无</td>
+                    <td>暂无</td>
+                    <td>暂无</td>
+                    <td>暂无</td>
+                    <td>暂无</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>5. 设备权限使用说明</h2>
+        <p>申请权限前会弹窗说明用途，您可随时在系统设置中关闭。关闭后可能影响相关功能。</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>权限</th>
+                    <th>用途与场景</th>
+                    <th>是否可选</th>
+                    <th>关闭路径</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>通知权限</td>
+                    <td>接收提醒/进度通知</td>
+                    <td>可选</td>
+                    <td>系统设置 &gt; 通知管理</td>
+                </tr>
+                <tr>
+                    <td>存储/文件读写</td>
+                    <td>导入/导出数据、缓存资源</td>
+                    <td>可选</td>
+                    <td>系统设置 &gt; 权限管理</td>
+                </tr>
+                <tr>
+                    <td>传感器/定位（如需）</td>
+                    <td>特定功能使用，如体态/运动/场景感知</td>
+                    <td>可选</td>
+                    <td>系统设置 &gt; 权限管理</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>6. 未成年人保护</h2>
+        <p>我们建议未成年人在监护人同意和指导下使用本产品。如您是监护人并对儿童/未成年人信息有疑问或希望删除相关信息，请联系我们处理。</p>
+
+        <h2>7. 您的权利与行使方式</h2>
+        <ul>
+            <li>查阅、更正、删除您的个人信息（在法律允许范围内）。</li>
+            <li>撤回授权同意：可在系统设置关闭相关权限，或通过联系我们申请删除相关数据（如有）。</li>
+            <li>获取副本/数据可携带（如适用）：通过联系我们提出请求。</li>
+            <li>账号注销（如有账号体系）：可通过联系我们申请，完成后相关数据按法律法规及合同要求处理。</li>
+        </ul>
+
+        <h2>8. 本政策的更新</h2>
+        <p>如有重大变更，我们会在应用内弹窗/公告或本页面提示，涉及敏感权限/数据时会再次征得您的同意。更新后继续使用即表示您接受更新后的政策。</p>
+
+        <h2>9. 联系我们</h2>
+        <p>如对本政策或个人信息保护有疑问、投诉或建议，请通过邮箱联系我们：<a href="mailto:LyuDevTeam@icloud.com">LyuDevTeam@icloud.com</a>。我们将在合理期限内予以回复。</p>
+    </div>
+
+    <p class="footer-note">最后更新：2025-12-15</p>
+</div>
+</body>
+</html>
+
