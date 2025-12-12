@@ -50,11 +50,13 @@
             Object.entries(p).forEach(([key, info]) => {
                 if (!info) return;
                 const status = info.status || '';
-                const link = info.link || '';
+                const link = (info.link || '').trim();
                 const label = labelMap[key] || key;
-                if (status === 'live' && link) {
+                // 检查链接是否有效（不是空字符串、不是 #、且是有效 URL）
+                const isValidLink = link && link !== '#' && (link.startsWith('http://') || link.startsWith('https://'));
+                if (status === 'live' && isValidLink) {
                     buttons.push(`<a href="${link}" class="btn-platform ${key}" target="_blank" rel="noopener noreferrer">${label}</a>`);
-                } else if (status === 'coming') {
+                } else if (status === 'coming' || (status === 'live' && !isValidLink)) {
                     buttons.push(`<span class="btn-platform coming">${label} · 敬请期待</span>`);
                 }
             });
@@ -84,102 +86,18 @@
             });
         }
 
-        const APP_DATA_FALLBACK = [
-            {
-                id: 'mind',
-                name: '律·思维',
-                eng: 'Lyu · Mind',
-                status: 'live',
-                slogan: '目光所至，思维破界。',
-                desc: '采用经典的舒尔特方格训练法，通过高强度的视觉搜索训练，瞬间激活你的大脑“冷启动”状态。无论是工作前的热身，还是日常的专注力提升，它都是你大脑的磨刀石。',
-                icon: 'images/lyu-mind.png',
-                platforms: {
-                    harmony: { status: 'coming', link: '#' },
-                    ios: { status: 'coming', link: '#' },
-                    android: { status: 'live', link: '#' }
-                }
-            },
-            {
-                id: 'time',
-                name: '律·时光',
-                eng: 'Lyu · Time',
-                status: 'coming',
-                slogan: '听见时间的韵律，进入心流之境。',
-                desc: '时间不该被切割，而应被感知。结合番茄工作法与白噪音，我们在数字世界中为你构建了一座静谧的钟楼，支持鸿蒙实况窗显示，让每一次专注都充满仪式感。',
-                icon: 'images/lyu-time.png',
-                platforms: {
-                    harmony: { status: 'coming', link: '' },
-                    ios: { status: 'coming', link: '' },
-                    android: { status: 'coming', link: '' }
-                }
-            },
-            {
-                id: 'space',
-                name: '律·空间',
-                eng: 'Lyu · Space',
-                status: 'coming',
-                slogan: '关上纷扰的门，打开自由的窗。',
-                desc: '在信息过载的时代，做减法才是最大的奢侈。极致的白名单锁机工具，仅保留必需工具，物理阻断无意识刷手机习惯。自律，即自由。',
-                icon: 'images/lyu-space.png',
-                platforms: {
-                    harmony: { status: 'coming', link: '' },
-                    ios: { status: 'coming', link: '' },
-                    android: { status: 'coming', link: '' }
-                }
-            },
-            {
-                id: 'move',
-                name: '律·动',
-                eng: 'Lyu · Move',
-                status: 'coming',
-                slogan: '向内探索，唤醒隐秘的力量。',
-                desc: '专注于凯格尔（盆底肌）训练，以极简隐晦的交互设计，帮助你找回身体的掌控感。独创触感反馈机制，无需语音，仅靠震动引导收缩与放松。',
-                icon: 'images/lyu-move.png',
-                platforms: {
-                    harmony: { status: 'coming', link: '' },
-                    ios: { status: 'coming', link: '' },
-                    android: { status: 'coming', link: '' }
-                }
-            },
-            {
-                id: 'align',
-                name: '律·正',
-                eng: 'Lyu · Align',
-                status: 'coming',
-                slogan: '重塑脊柱曲度，挺起人生的脊梁。',
-                desc: '基于权威的麦肯基疗法，专注于通过反向伸展运动，对抗久坐带来的压力。结合鸿蒙传感器与智能体态自测，每天五分钟，让脊柱回归自然曲线。',
-                icon: 'images/lyu-align.png',
-                platforms: {
-                    harmony: { status: 'coming', link: '' },
-                    ios: { status: 'coming', link: '' },
-                    android: { status: 'coming', link: '' }
-                }
-            },
-            {
-                id: 'vision',
-                name: '律·眸',
-                eng: 'Lyu · Vision',
-                status: 'coming',
-                slogan: '拂去视界的尘埃，重现清晰目光。',
-                desc: '屏幕时代的视力护盾。基于贝茨视力训练法与加博尔原理，通过动态追踪与焦距切换，缓解睫状肌痉挛。支持多屏流转，利用大屏引导眼球运动。',
-                icon: 'images/lyu-vision.png',
-                platforms: {
-                    harmony: { status: 'coming', link: '' },
-                    ios: { status: 'coming', link: '' },
-                    android: { status: 'coming', link: '' }
-                }
-            }
-        ];
-
         async function loadData() {
             try {
                 const res = await fetch('data/apps.json');
                 if (!res.ok) throw new Error(res.statusText);
                 const data = await res.json();
-                render(data.apps || APP_DATA_FALLBACK);
+                render(data.apps || []);
             } catch (err) {
-                console.error('加载应用数据失败，已使用内置数据', err);
-                render(APP_DATA_FALLBACK);
+                console.error('加载应用数据失败', err);
+                const liveContainer = document.getElementById('live-apps-container');
+                const comingSection = document.getElementById('coming-section');
+                liveContainer.innerHTML = '<p style="text-align: center; color: var(--text-sub); padding: 40px;">数据加载失败，请刷新页面重试。</p>';
+                comingSection.style.display = 'none';
             }
         }
 
