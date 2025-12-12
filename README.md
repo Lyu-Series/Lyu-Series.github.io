@@ -18,4 +18,8 @@
 - 静态站点，可直接放置于 GitHub Pages（例如 `lyu-series.github.io`）。
 - 如使用构建工具，常见忽略项已在 `.gitignore` 中列出。
 
+## 许可说明
+- 代码：MIT License（见 `LICENSE`）。
+- 资源：`images/` 目录及其中图标/素材保留所有权利，未经书面授权禁止使用、复制、分发或用于商业目的。
+
 
