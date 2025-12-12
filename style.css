@@ -1,0 +1,339 @@
+/* 基础重置 */
+:root {
+    --blue: #3399FF;
+    --red: #FF6B6B;
+    --bg: #F9FAFB;
+    --text-main: #1F2937;
+    --text-sub: #6B7280;
+    --white: #FFFFFF;
+    --blue-light: rgba(51, 153, 255, 0.1);
+    --red-light: rgba(255, 107, 107, 0.1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #FFFFFF;
+    /* 添加微妙的网格纹理 */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.6;
+    position: relative;
+}
+
+/* =========================================
+   背景设计方案 - 选择其中一个方案
+   ========================================= */
+
+/* 方案1: 韵律波形 - 体现节奏感（注释掉当前方案后启用）
+body {
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(51, 153, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 107, 107, 0.03) 0%, transparent 50%),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.008) 2px,
+            rgba(0, 0, 0, 0.008) 4px
+        );
+    background-size: 100% 100%, 100% 100%, 100% 20px;
+}
+*/
+
+/* 方案2: 有序点阵 - 体现规律性（注释掉当前方案后启用）
+body {
+    background-image: 
+        radial-gradient(circle, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+}
+*/
+
+/* 方案3: 涟漪扩散 - 体现韵律感（注释掉当前方案后启用）
+body {
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(51, 153, 255, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(255, 107, 107, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(51, 153, 255, 0.03) 0%, transparent 35%);
+    background-size: 800px 800px, 600px 600px, 700px 700px;
+    background-position: center top, left bottom, right bottom;
+}
+*/
+
+/* 方案4: 流动线条 - 体现律动感（注释掉当前方案后启用）
+body {
+    background-image: 
+        linear-gradient(45deg, transparent 30%, rgba(51, 153, 255, 0.02) 30%, rgba(51, 153, 255, 0.02) 70%, transparent 70%),
+        linear-gradient(-45deg, transparent 30%, rgba(255, 107, 107, 0.02) 30%, rgba(255, 107, 107, 0.02) 70%, transparent 70%);
+    background-size: 60px 60px;
+}
+*/
+
+/* 方案5: 极简网格 - 更精致的网格（注释掉当前方案后启用）
+body {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.012) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+}
+*/
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 头部 */
+.hero-section {
+    text-align: center;
+    padding: 80px 0 60px;
+}
+.brand-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -1px;
+}
+.brand-eng { font-weight: 300; color: var(--blue); }
+.brand-slogan { color: var(--text-sub); font-size: 1.1rem; margin-top: 10px; }
+
+/* =========================================
+   已上线 App (统一大卡片样式)
+   ========================================= */
+.live-section {
+    padding-bottom: 20px;
+}
+
+.app-card-large {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    border: 1px solid rgba(0,0,0,0.02);
+    transition: transform 0.2s ease;
+    /* 给卡片顶部加一条蓝色装饰线 */
+    border-top: 4px solid var(--blue);
+}
+
+.app-card-large:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+}
+
+@media (max-width: 768px) {
+    .app-card-large { flex-direction: column; align-items: center; text-align: center; padding: 30px; gap: 24px; }
+    .card-header { flex-direction: column; gap: 10px; justify-content: center; }
+}
+
+.card-icon-area img {
+    width: 130px;
+    height: 130px;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
+}
+
+.card-content-area { flex: 1; width: 100%; }
+
+/* 标题区域 */
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.app-name { font-size: 1.8rem; margin: 0; font-weight: 800; }
+.app-eng { font-weight: 300; font-size: 1.4rem; color: #9CA3AF; margin-left: 8px; }
+
+/* 统一标签：淡蓝色背景 + 蓝色文字 */
+.badge-unified {
+    background: var(--blue-light);
+    color: var(--blue);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* 统一口号：红色文字 */
+.app-slogan {
+    font-size: 1.1rem;
+    color: var(--red);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.app-desc { color: var(--text-sub); margin-bottom: 24px; font-size: 0.95rem; line-height: 1.7; }
+
+.cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+/* 主按钮：下载体验，沿用原有风格 */
+.btn-unified {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    color: white;
+    background: var(--red);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-unified:hover {
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    background: #ff5252;
+}
+
+.btn-unified .arrow { margin-left: 8px; font-weight: bold; }
+
+.platform-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    min-height: 44px; /* 预留高度，避免卡片跳动 */
+    pointer-events: none; /* 收起时不可点击 */
+}
+
+.platform-buttons.expanded {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.btn-platform {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-platform.harmony {
+    color: var(--blue);
+    border-color: rgba(51, 153, 255, 0.3);
+    background: rgba(51, 153, 255, 0.08);
+    box-shadow: 0 4px 10px rgba(51, 153, 255, 0.12);
+}
+
+.btn-platform.harmony:hover {
+    background: rgba(51, 153, 255, 0.14);
+    box-shadow: 0 6px 14px rgba(51, 153, 255, 0.18);
+    transform: translateY(-1px);
+}
+
+.btn-platform.ios {
+    color: #111827;
+    border-color: rgba(17, 24, 39, 0.1);
+    background: rgba(17, 24, 39, 0.03);
+    box-shadow: 0 4px 10px rgba(17, 24, 39, 0.06);
+}
+
+.btn-platform.ios:hover {
+    background: rgba(17, 24, 39, 0.06);
+    box-shadow: 0 6px 14px rgba(17, 24, 39, 0.1);
+    transform: translateY(-1px);
+}
+
+.btn-platform.android {
+    color: var(--red);
+    border-color: rgba(255, 107, 107, 0.3);
+    background: rgba(255, 107, 107, 0.08);
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.12);
+}
+
+.btn-platform.android:hover {
+    background: rgba(255, 107, 107, 0.14);
+    box-shadow: 0 6px 14px rgba(255, 107, 107, 0.18);
+    transform: translateY(-1px);
+}
+
+.btn-platform.coming {
+    color: #9CA3AF;
+    border-color: rgba(156, 163, 175, 0.3);
+    background: rgba(156, 163, 175, 0.1);
+    box-shadow: none;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* =========================================
+   敬请期待 (网格样式)
+   ========================================= */
+.coming-section {
+    padding: 40px 0 80px;
+    border-top: 1px solid #F3F4F6;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #D1D5DB;
+    margin-bottom: 40px;
+}
+.title-eng { font-weight: 300; font-size: 1rem; }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px;
+}
+
+.grid-item {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid transparent;
+    opacity: 0.7;
+    transition: all 0.2s;
+}
+
+.grid-item:hover {
+    opacity: 1;
+    border-color: #E5E7EB;
+    transform: translateY(-3px);
+}
+
+.grid-item img.grayscale {
+    width: 60px;
+    height: 60px;
+    filter: grayscale(100%);
+    opacity: 0.4;
+    margin-bottom: 12px;
+}
+
+.grid-item h4 { margin: 0; font-size: 0.95rem; color: var(--text-main); }
+.eng-sub { margin: 2px 0 10px; font-size: 0.8rem; color: #9CA3AF; }
+.coming-text { font-size: 0.7rem; color: #D1D5DB; font-weight: 600; border: 1px solid #E5E7EB; padding: 2px 8px; border-radius: 4px; }
+
+/* 页脚 */
+footer { text-align: center; color: #9CA3AF; padding: 20px 0; font-size: 0.85rem; }
