@@ -59,19 +59,25 @@
             width: 32px;
             height: 32px;
             border-radius: 10px;
-            color: var(--text-sub);
+            color: var(--muted);
             background: rgba(51, 153, 255, 0.06);
             border: 1px solid rgba(51, 153, 255, 0.2);
             text-decoration: none;
             font-size: 18px;
             font-weight: 700;
             transition: all 0.2s ease;
-            margin-left: -40px; /* 左移一些，与页面边缘更齐 */
         }
         .back-arrow:hover {
             color: var(--blue);
             border-color: var(--blue);
             background: rgba(51, 153, 255, 0.12);
+        }
+        
+        /* 响应式调整：仅在大屏幕上悬挂箭头 */
+        @media (min-width: 960px) {
+            .back-arrow {
+                margin-left: -42px;
+            }
         }
         .card {
             background: #fff;
