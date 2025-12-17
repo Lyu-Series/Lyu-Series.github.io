@@ -9,9 +9,9 @@
       "desc": "采用经典的舒尔特方格训练法，通过高强度的视觉搜索训练，瞬间激活你的大脑“冷启动”状态。无论是工作前的热身，还是日常的专注力提升，它都是你大脑的磨刀石。",
       "icon": "images/lyu-mind.png",
       "platforms": {
-        "harmony": { "status": "coming", "link": "#" },
-        "ios": { "status": "coming", "link": "#" },
-        "android": { "status": "live", "link": "https://github.com/Lyu-Series/Lyu-Series-Feedback/releases/tag/LyuMind-v1.0.0" }
+        "harmony": { "status": "live", "link": "https://appgallery.huawei.com/app/detail?id=com.lyu.mind" },
+        "ios": { "status": "coming", "link": "" },
+        "android": { "status": "coming", "link": "" }
       }
     },
     {
