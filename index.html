@@ -422,14 +422,11 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
 /* ============================================================
    页脚
    ============================================================ */
-.site-footer { padding: 44px 0 52px; }
-.site-footer .container { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-.footer-brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px; }
-.footer-tag { color: var(--muted); font-size: 13px; }
-.footer-links { margin-left: auto; display: flex; gap: 20px; }
-.footer-links a { font-size: 13.5px; color: var(--fg-2); transition: color var(--motion-fast) var(--ease); }
-.footer-links a:hover { color: var(--blue); }
-.footer-copy { width: 100%; margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border-soft); color: var(--muted); font-size: 12.5px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.site-footer { padding: 36px 0 44px; }
+.site-footer .container { text-align: center; }
+.footer-copy { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.footer-copy a { color: var(--fg-2); transition: color var(--motion-fast) var(--ease); }
+.footer-copy a:hover { color: var(--blue); }
 
 /* ============================================================
    滚动显现
@@ -828,19 +825,7 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
 
 <footer class="site-footer" data-od-id="footer-site">
   <div class="container">
-    <span class="footer-brand">
-      <span class="brand-dot" aria-hidden="true"></span>
-      <span data-i18n="nav.brand">律 Lyu</span>
-    </span>
-    <span class="footer-tag" data-i18n="footer.tag">Designed for Digital Wellness. 为数字健康而生。</span>
-    <div class="footer-links">
-      <a href="privacy.html" target="_blank" rel="noopener" data-od-id="footer-privacy" data-i18n="footer.privacy">隐私政策</a>
-      <a href="https://bayonetta.github.io/" target="_blank" rel="noopener" data-od-id="footer-developer" data-i18n="footer.developer">关于开发者</a>
-    </div>
-    <div class="footer-copy">
-      <span data-i18n="footer.copyright">© 2025 律 (Lyu) 系列. 保留所有权利。</span>
-      <span data-i18n="footer.made">为更健康的一天而设计。</span>
-    </div>
+    <p class="footer-copy" data-i18n="footer.copyright">© 2025 律 (Lyu) 系列. Designed for Digital Wellness. | <a href="privacy.html" target="_blank" rel="noopener" data-od-id="footer-privacy">隐私政策 Privacy</a></p>
   </div>
 </footer>
 
@@ -1010,11 +995,7 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
       "values.v3.num": "03 · EVIDENCE",
       "values.v3.title": "科学为据",
       "values.v3.desc": "每个方法都来自公开研究与临床实践，不贩卖焦虑，只提供可坚持的日常。",
-      "footer.tag": "Designed for Digital Wellness. 为数字健康而生。",
-      "footer.privacy": "隐私政策",
-      "footer.developer": "关于开发者",
-      "footer.copyright": "© 2025 律 (Lyu) 系列. 保留所有权利。",
-      "footer.made": "为更健康的一天而设计。"
+      "footer.copyright": "© 2025 律 (Lyu) 系列. Designed for Digital Wellness. | <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\" data-od-id=\"footer-privacy\">隐私政策 Privacy</a>"
     },
 
     en: {
@@ -1143,11 +1124,7 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
       "values.v3.num": "03 · EVIDENCE",
       "values.v3.title": "Science first",
       "values.v3.desc": "Every method is grounded in published research and clinical practice. No fear-mongering, just habits you can keep.",
-      "footer.tag": "Designed for Digital Wellness.",
-      "footer.privacy": "Privacy",
-      "footer.developer": "About the developer",
-      "footer.copyright": "© 2025 Lyu Series. All rights reserved.",
-      "footer.made": "Designed for healthier days."
+      "footer.copyright": "© 2025 Lyu Series. Designed for Digital Wellness. | <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\" data-od-id=\"footer-privacy\">Privacy Policy</a>"
     },
 
     ja: {
@@ -1276,11 +1253,7 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
       "values.v3.num": "03 · EVIDENCE",
       "values.v3.title": "科学に基づく",
       "values.v3.desc": "すべての手法は公開された研究と臨床実践に基づき、不安を煽らず、続けられる習慣を提供します。",
-      "footer.tag": "Designed for Digital Wellness.",
-      "footer.privacy": "プライバシー",
-      "footer.developer": "開発者について",
-      "footer.copyright": "© 2025 律（Lyu）シリーズ. All rights reserved.",
-      "footer.made": "より健やかな一日のために。"
+      "footer.copyright": "© 2025 律（Lyu）シリーズ. Designed for Digital Wellness. | <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\" data-od-id=\"footer-privacy\">プライバシー</a>"
     }
   };
 
