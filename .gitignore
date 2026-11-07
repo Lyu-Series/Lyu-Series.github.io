@@ -10,4 +10,8 @@ build/
 .env
 .env.*
 
-
+# Open Design 编辑器本地元数据（不进仓库）
+.od-skills/
+.file-versions/
+.mcp.json
+*.artifact.json

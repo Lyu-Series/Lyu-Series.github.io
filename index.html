@@ -403,6 +403,25 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
 .pf-note { font-size: 12px; color: var(--muted); display: block; margin-top: 1px; }
 .btn-slot { flex: none; }
 
+/* macOS 未签名首次打开提示：沿用下载卡片的暖底 + 大圆角，蓝色 eyebrow，不用警示色 */
+.mac-notice {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin-top: var(--space-5); padding: 18px 22px;
+  background: var(--surface-warm); border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.mac-notice .notice-icon {
+  width: 20px; height: 20px; flex: none; margin-top: 2px; color: var(--blue);
+}
+.mac-notice .notice-body { min-width: 0; }
+.mac-notice .notice-label {
+  font-family: var(--font-mono); font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 6px;
+}
+.mac-notice .notice-text { font-size: 13.5px; line-height: 1.7; color: var(--fg-2); }
+.mac-notice .notice-text b { font-weight: 600; color: var(--fg); }
+
 /* ============================================================
    理念区
    ============================================================ */
@@ -447,6 +466,7 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
   .nav-links { display: none; }
   .hero-launchers { grid-template-columns: 1fr 1fr; }
   .section { padding: var(--space-12) 0; }
+  .mac-notice { padding: 15px 16px; gap: 10px; }
 }
 @media (max-width: 420px) {
   .hero-launchers { grid-template-columns: 1fr; }
@@ -708,7 +728,7 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
               <span class="pf" data-i18n="platform.macos">macOS</span>
               <span class="pf-note" data-i18n="dl.space.macos.note">Apple Silicon · Intel</span>
             </span>
-            <div class="btn-slot" data-btn="space:macos"><span class="btn btn-sm btn-pending" data-i18n="download.soon">待上线</span></div>
+            <div class="btn-slot" data-btn="space:macos"><a class="btn btn-primary btn-sm" href="https://www.google.com" target="_blank" rel="noopener" data-i18n="download.btn">下载</a></div>
           </div>
           <div class="platform-row" data-dl="space:windows">
             <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg></span>
@@ -790,6 +810,15 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
           </div>
         </div>
       </div>
+
+      <!-- macOS 未签名首次打开提示：位于下载卡片网格下方，紧邻实际下载路径 -->
+      <aside class="mac-notice" data-od-id="mac-notice" role="note">
+        <svg class="notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        <div class="notice-body">
+          <p class="notice-label" data-i18n="download.mac.label">macOS · 首次打开</p>
+          <p class="notice-text" data-i18n="download.mac.text">首次打开若被系统拦截，请先在「应用程序」文件夹中<b>右键点击 App 选择「打开」</b>。若仍无法启动（macOS 15 及更新版本尤其常见），请打开<b>系统设置 → 隐私与安全性</b>，在「安全性」区域找到该 App 的拦截提示，点击<b>「仍要打开」</b>并确认。</p>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -846,7 +875,8 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
       },
       space: {
         platforms: {
-          macos: { url: "" },
+          /* macOS 已上线：占位直链，替换为真实下载地址即可 */
+          macos: { url: "https://www.google.com" },
           windows: { url: "" }
         }
       },
@@ -963,6 +993,8 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
       "download.lead": "已上线平台可直接下载；待上线的平台会在发布后第一时间补上。",
       "download.btn": "下载",
       "download.soon": "待上线",
+      "download.mac.label": "macOS · 首次打开",
+      "download.mac.text": "首次打开若被系统拦截，请先在「应用程序」文件夹中<b>右键点击 App 选择「打开」</b>。若仍无法启动（macOS 15 及更新版本尤其常见），请打开<b>系统设置 → 隐私与安全性</b>，在「安全性」区域找到该 App 的拦截提示，点击<b>「仍要打开」</b>并确认。",
       "dl.mind.sub": "Lyu · Mind",
       "dl.space.sub": "Lyu · Space",
       "dl.mind.harmony.note": "AppGallery 已上线",
@@ -1092,6 +1124,8 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
       "download.lead": "Available platforms are ready to download. The rest go live the moment they ship.",
       "download.btn": "Download",
       "download.soon": "Coming soon",
+      "download.mac.label": "macOS · First launch",
+      "download.mac.text": "If macOS blocks the app on first launch, <b>right-click the app in Applications and choose &quot;Open&quot;</b>. If it still will not start (especially on macOS 15 and later), go to <b>System Settings → Privacy &amp; Security</b>, find the blocked-app notice under Security, then click <b>&quot;Open Anyway&quot;</b> and confirm.",
       "dl.mind.sub": "Lyu · Mind",
       "dl.space.sub": "Lyu · Space",
       "dl.mind.harmony.note": "Live on AppGallery",
@@ -1221,6 +1255,8 @@ html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
       "download.lead": "リリース済みプラットフォームはすぐに入手できます。未公開のものは公開と同時に追加されます。",
       "download.btn": "ダウンロード",
       "download.soon": "近日公開",
+      "download.mac.label": "macOS · 初回起動",
+      "download.mac.text": "初回起動時にブロックされた場合は、まず「アプリケーション」フォルダで<b>アプリを右クリックして「開く」を選択</b>してください。それでも起動しない場合（macOS 15 以降では特に多く発生します）は、<b>システム設定 → プライバシーとセキュリティ</b>を開き、「セキュリティ」欄にあるブロックの通知から<b>「このまま開く」</b>をクリックして確認してください。",
       "dl.mind.sub": "Lyu · Mind",
       "dl.space.sub": "Lyu · Space",
       "dl.mind.harmony.note": "AppGallery で公開中",

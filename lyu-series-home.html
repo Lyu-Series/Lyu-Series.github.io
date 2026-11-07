@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>律 (Lyu) 系列 · 万物皆有律，掌控你的生活节奏</title>
+<meta name="description" content="律系列专注于数字健康：专注力、屏幕自律、脊柱与视力。克制而科学的方法，把生活节奏重新握在手里。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+/* 首屏主题防闪烁：localStorage 优先，其次系统偏好 */
+(function () {
+  try {
+    var t = localStorage.getItem("lyu-theme");
+    if (t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  } catch (e) {}
+})();
+</script>
+<style>
+/* ============================================================
+   design-system/lyu-blue-red · 律系列 · 蓝 + 红双主色
+   ============================================================ */
+:root {
+  --bg: oklch(98% 0.005 250);
+  --surface: oklch(100% 0 0);
+  --surface-warm: oklch(95.5% 0.007 250);
+  --fg: oklch(24% 0.02 250);
+  --fg-2: oklch(40% 0.018 250);
+  --muted: oklch(47% 0.02 250);
+  --border: oklch(91% 0.008 250);
+  --border-soft: oklch(94.5% 0.006 250);
+
+  /* 品牌蓝 #3399FF → oklch(67.6% 0.176 252)，取深一档用于浅色文字/填充 */
+  --blue: oklch(52% 0.17 252);
+  --blue-hover: oklch(58% 0.17 252);
+  --blue-active: oklch(47% 0.17 252);
+  --blue-ink: oklch(100% 0 0);
+  --blue-soft: color-mix(in oklab, var(--blue) 10%, white);
+  --blue-faint: color-mix(in oklab, var(--blue) 5%, transparent);
+
+  /* 品牌红 #FF6B6B → oklch(71.2% 0.181 23)，取深一档用于强调文字 */
+  --red: oklch(52% 0.18 24);
+  --red-hover: oklch(58% 0.18 24);
+  --red-active: oklch(47% 0.18 24);
+  --red-ink: oklch(100% 0 0);
+  --red-soft: color-mix(in oklab, var(--red) 10%, white);
+  --red-faint: color-mix(in oklab, var(--red) 5%, transparent);
+
+  --accent: var(--blue);
+  --accent-hover: var(--blue-hover);
+  --accent-active: var(--blue-active);
+  --accent-on: var(--blue-ink);
+  --success: oklch(62% 0.16 150);
+  --danger: oklch(55% 0.19 24);
+
+  --font-display: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+  --font-body: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-serif: "Songti SC", "Noto Serif CJK SC", "STSong", "Hiragino Mincho ProN", "SimSun", serif;
+
+  --text-sm: 13px;
+  --text-base: 15.5px;
+  --text-lg: 17px;
+  --text-xl: 20px;
+  --text-2xl: 26px;
+  --text-3xl: 32px;
+  --leading-body: 1.62;
+  --leading-tight: 1.3;
+
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px;
+  --radius-sm: 10px; --radius-md: 16px; --radius-lg: 20px; --radius-pill: 9999px;
+
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 16px 40px rgba(20, 50, 120, 0.10), 0 1px 3px rgba(20, 50, 120, 0.06);
+  --focus-ring: 0 0 0 4px color-mix(in oklab, var(--blue), transparent 76%);
+  --motion-fast: 150ms;
+  --motion-base: 240ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --container-max: 1160px;
+  --gutter: clamp(16px, 3vw, 36px);
+  --nav-h: 64px;
+}
+
+html { color-scheme: light; }
+html[data-theme="dark"] { color-scheme: dark; }
+html[data-theme="dark"] {
+  --bg: oklch(16% 0.012 250);
+  --surface: oklch(20% 0.012 250);
+  --surface-warm: oklch(24% 0.014 250);
+  --fg: oklch(92% 0.005 250);
+  --fg-2: oklch(78% 0.01 250);
+  --muted: oklch(66% 0.01 250);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-soft: rgba(255, 255, 255, 0.06);
+
+  --blue: oklch(68% 0.16 252);
+  --blue-hover: oklch(73% 0.16 252);
+  --blue-active: oklch(62% 0.16 252);
+  --blue-ink: oklch(14% 0.02 250);
+  --blue-soft: color-mix(in oklab, var(--blue) 16%, var(--surface));
+  --blue-faint: color-mix(in oklab, var(--blue) 8%, transparent);
+
+  --red: oklch(68% 0.16 24);
+  --red-hover: oklch(73% 0.16 24);
+  --red-active: oklch(62% 0.16 24);
+  --red-ink: oklch(14% 0.02 250);
+  --red-soft: color-mix(in oklab, var(--red) 16%, var(--surface));
+  --red-faint: color-mix(in oklab, var(--red) 8%, transparent);
+
+  --accent-on: var(--blue-ink);
+  --success: oklch(70% 0.15 150);
+  --elev-raised: 0 16px 40px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
+  --focus-ring: 0 0 0 4px color-mix(in oklab, var(--blue), transparent 62%);
+}
+
+/* ============================================================
+   基础
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4, p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: 6px; }
+
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding: var(--space-16) 0; }
+section[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ============================================================
+   顶部导航
+   ============================================================ */
+.site-nav {
+  position: sticky; top: 0; z-index: 50; height: var(--nav-h);
+  display: flex; align-items: center;
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom: 1px solid var(--border-soft);
+}
+.site-nav .container {
+  width: 100%; display: flex; align-items: center; gap: var(--space-6);
+}
+.brand {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-weight: 700; font-size: var(--text-lg); letter-spacing: -0.01em;
+}
+.brand-dot {
+  width: 18px; height: 18px; border-radius: 6px; flex: none;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue) 55%, var(--red) 130%);
+  box-shadow: 0 2px 6px color-mix(in oklab, var(--blue) 40%, transparent);
+}
+.brand-sub { font-weight: 400; color: var(--muted); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; margin-left: 2px; }
+
+.nav-links { display: flex; gap: var(--space-5); margin-left: auto; align-items: center; }
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--fg-2);
+  padding: 6px 2px; border-radius: 6px; transition: color var(--motion-fast) var(--ease);
+}
+.nav-links a:hover { color: var(--blue); }
+
+.nav-controls { display: flex; align-items: center; gap: var(--space-3); }
+.icon-btn {
+  width: 38px; height: 38px; border-radius: 10px; display: inline-flex;
+  align-items: center; justify-content: center; color: var(--fg-2);
+  border: 1px solid var(--border); background: var(--surface);
+  transition: background var(--motion-fast) var(--ease), color var(--motion-fast) var(--ease);
+}
+.icon-btn:hover { background: var(--surface-warm); color: var(--fg); }
+.icon-btn svg { width: 18px; height: 18px; }
+.icon-btn .icon-moon { display: none; }
+html[data-theme="dark"] .icon-btn .icon-sun { display: none; }
+html[data-theme="dark"] .icon-btn .icon-moon { display: block; }
+
+.lang-switch select {
+  appearance: none; -webkit-appearance: none;
+  height: 38px; padding: 0 30px 0 12px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--surface);
+  color: var(--fg); font-size: 13px; font-weight: 500; font-family: var(--font-body);
+  cursor: pointer; transition: border-color var(--motion-fast) var(--ease), background var(--motion-fast) var(--ease);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center;
+}
+.lang-switch select:hover { border-color: color-mix(in oklab, var(--blue) 45%, var(--border)); }
+
+/* ============================================================
+   按钮与徽标
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 18px; border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
+  border: 1px solid transparent; cursor: pointer;
+  transition: background var(--motion-fast) var(--ease), border-color var(--motion-fast) var(--ease),
+              box-shadow var(--motion-fast) var(--ease), transform var(--motion-fast) var(--ease);
+}
+.btn svg { width: 16px; height: 16px; }
+.btn-lg { padding: 13px 24px; font-size: 15px; border-radius: 12px; }
+.btn-sm { padding: 7px 13px; font-size: 13px; border-radius: 9px; }
+
+.btn-primary {
+  background: var(--accent); color: var(--accent-on);
+  box-shadow: 0 6px 18px color-mix(in oklab, var(--blue) 28%, transparent);
+}
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 9px 22px color-mix(in oklab, var(--blue) 34%, transparent); }
+.btn-primary:active { background: var(--accent-active); transform: translateY(0); }
+
+.btn-ghost { border-color: var(--border); color: var(--fg); background: transparent; }
+.btn-ghost:hover { background: var(--surface-warm); border-color: var(--fg-2); }
+
+.btn-red { background: var(--red); color: var(--red-ink); box-shadow: 0 6px 18px color-mix(in oklab, var(--red) 26%, transparent); }
+.btn-red:hover { background: var(--red-hover); transform: translateY(-1px); }
+
+.btn-pending {
+  border-color: var(--border); background: var(--surface-warm);
+  color: var(--muted); cursor: default; pointer-events: none;
+}
+
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: var(--radius-pill);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap;
+}
+.badge-live { background: var(--blue-soft); color: var(--blue); }
+.badge-soon { background: var(--surface-warm); color: var(--muted); border: 1px solid var(--border-soft); }
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero { position: relative; overflow: hidden; padding: clamp(56px, 9vh, 96px) 0 clamp(48px, 7vh, 80px); text-align: center; }
+.hero-watermark {
+  position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-serif); font-size: clamp(220px, 38vw, 440px); line-height: 1;
+  color: var(--blue-faint); user-select: none; pointer-events: none; z-index: 0;
+}
+.hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.hero-bg::before, .hero-bg::after {
+  content: ""; position: absolute; border-radius: 50%; filter: blur(40px);
+}
+.hero-bg::before { width: 560px; height: 560px; left: -160px; top: -180px; background: color-mix(in oklab, var(--blue) 9%, transparent); }
+.hero-bg::after { width: 520px; height: 520px; right: -140px; top: 40px; background: color-mix(in oklab, var(--red) 7%, transparent); }
+
+.hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.hero-eyebrow {
+  font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--blue); display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after { content: ""; width: 22px; height: 1px; background: var(--border); }
+.hero-title {
+  font-size: clamp(38px, 6vw, 62px); font-weight: 800;
+  line-height: 1.3; letter-spacing: 0; max-width: 16em;
+}
+.hero-title .accent-red { color: var(--red); }
+.hero-sub {
+  margin-top: 22px; max-width: 34em; font-size: var(--text-lg);
+  color: var(--fg-2); line-height: 1.75;
+}
+.hero-rhythm { margin-top: 30px; color: var(--red); opacity: 0.9; }
+.hero-actions { display: flex; gap: var(--space-3); margin-top: 34px; flex-wrap: wrap; justify-content: center; }
+
+/* 启动器行 */
+.hero-launchers {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  width: 100%; max-width: 880px; margin-top: 48px;
+}
+.launcher {
+  display: flex; align-items: center; gap: 12px; text-align: left;
+  padding: 14px 16px; border-radius: var(--radius-md);
+  background: var(--surface); border: 1px solid var(--border);
+  transition: transform var(--motion-fast) var(--ease), border-color var(--motion-fast) var(--ease), box-shadow var(--motion-fast) var(--ease);
+}
+.launcher:hover { transform: translateY(-2px); border-color: var(--fg-2); box-shadow: var(--elev-raised); }
+.launcher-icon {
+  width: 34px; height: 34px; border-radius: 9px; overflow: hidden; flex: none;
+  background: var(--surface-warm); display: flex; align-items: center; justify-content: center;
+}
+.launcher-icon img { width: 100%; height: 100%; object-fit: cover; }
+.launcher-info { min-width: 0; }
+.launcher-name { font-weight: 600; font-size: 14px; display: block; line-height: 1.3; }
+.launcher-desc { font-size: 12px; color: var(--muted); display: block; margin-top: 1px; }
+
+/* ============================================================
+   章节标题
+   ============================================================ */
+.section-head { max-width: 640px; margin-bottom: var(--space-8); }
+.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 12px; font-weight: 500;
+}
+.section-head h2 { font-size: clamp(26px, 3.4vw, 34px); font-weight: 800; line-height: 1.3; letter-spacing: 0; }
+.section-lead { margin-top: 14px; color: var(--fg-2); font-size: var(--text-lg); line-height: 1.7; }
+
+/* ============================================================
+   产品区
+   ============================================================ */
+.products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.product-card {
+  --p-accent: var(--blue); --p-soft: var(--blue-soft); --p-faint: var(--blue-faint);
+  position: relative; display: flex; flex-direction: column;
+  padding: 28px; border-radius: var(--radius-lg);
+  background: var(--surface); border: 1px solid var(--border);
+  transition: transform var(--motion-base) var(--ease), border-color var(--motion-base) var(--ease), box-shadow var(--motion-base) var(--ease);
+}
+.product-card[data-accent="red"] { --p-accent: var(--red); --p-soft: var(--red-soft); --p-faint: var(--red-faint); }
+.product-card:hover { transform: translateY(-3px); border-color: color-mix(in oklab, var(--p-accent) 45%, var(--border)); box-shadow: var(--elev-raised); }
+.product-card::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: linear-gradient(90deg, var(--p-accent) 0%, color-mix(in oklab, var(--p-accent) 55%, transparent) 100%);
+}
+
+.pcard-head { display: flex; align-items: flex-start; gap: 16px; }
+.pcard-icon {
+  width: 64px; height: 64px; border-radius: 16px; overflow: hidden; flex: none;
+  background: var(--p-soft); display: flex; align-items: center; justify-content: center;
+}
+.pcard-icon img { width: 100%; height: 100%; object-fit: cover; }
+.pcard-meta { flex: 1; min-width: 0; padding-top: 2px; }
+.pcard-kind {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--p-accent); font-weight: 500; display: block; margin-bottom: 4px;
+}
+.pcard-name { font-size: var(--text-2xl); font-weight: 800; letter-spacing: 0; line-height: 1.3; }
+.pcard-name .eng { font-weight: 400; color: var(--muted); font-size: 0.72em; margin-left: 6px; letter-spacing: 0.01em; }
+.pcard-badge { margin-left: auto; flex: none; }
+
+.pcard-slogan { margin-top: 18px; font-size: var(--text-lg); font-weight: 600; color: var(--red); line-height: 1.5; }
+.pcard-desc { margin-top: 10px; color: var(--fg-2); font-size: 14px; line-height: 1.7; }
+.pcard-features { list-style: none; padding: 0; margin: 18px 0 0; display: flex; flex-direction: column; gap: 8px; }
+.fchip {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 8px 12px; border-radius: 10px; background: var(--surface-warm);
+  border: 1px solid var(--border-soft); font-size: 13.5px; font-weight: 500;
+}
+.fchip-name { display: inline-flex; align-items: center; gap: 8px; }
+.fchip-dot { width: 6px; height: 6px; border-radius: 2px; background: var(--p-accent); flex: none; }
+.fchip-kbd {
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--muted);
+  background: var(--surface); border: 1px solid var(--border); padding: 2px 7px; border-radius: 6px;
+  white-space: nowrap;
+}
+.pcard-foot { margin-top: auto; padding-top: 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.pcard-plat { font-size: 12.5px; color: var(--muted); font-family: var(--font-mono); letter-spacing: 0.02em; }
+
+/* ============================================================
+   下载区
+   ============================================================ */
+.download-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.download-card {
+  --p-accent: var(--blue); --p-soft: var(--blue-soft);
+  padding: 26px; border-radius: var(--radius-lg);
+  background: var(--surface); border: 1px solid var(--border);
+  transition: transform var(--motion-base) var(--ease), box-shadow var(--motion-base) var(--ease);
+}
+.download-card[data-accent="red"] { --p-accent: var(--red); --p-soft: var(--red-soft); }
+.download-card:hover { transform: translateY(-2px); box-shadow: var(--elev-raised); }
+.download-card.highlight { animation: hl-pulse 1.7s var(--ease); }
+@keyframes hl-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--p-accent) 0%, transparent); border-color: var(--border); }
+  35% { box-shadow: 0 0 0 5px color-mix(in oklab, var(--p-accent) 22%, transparent); border-color: var(--p-accent); }
+}
+
+.dcard-head { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; margin-bottom: 6px; border-bottom: 1px solid var(--border-soft); }
+.dcard-dot { width: 26px; height: 26px; border-radius: 8px; background: var(--p-soft); display: flex; align-items: center; justify-content: center; }
+.dcard-dot span { width: 10px; height: 10px; border-radius: 3px; background: var(--p-accent); }
+.dcard-name { font-weight: 700; font-size: 17px; }
+.dcard-sub { font-size: 12.5px; color: var(--muted); margin-left: auto; font-family: var(--font-mono); letter-spacing: 0.02em; }
+
+.platform-row {
+  display: flex; align-items: center; gap: 14px; padding: 13px 2px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.platform-row:last-child { border-bottom: 0; }
+.pf-icon { width: 34px; height: 34px; border-radius: 9px; background: var(--surface-warm); border: 1px solid var(--border-soft); display: flex; align-items: center; justify-content: center; color: var(--fg-2); flex: none; }
+.pf-icon svg { width: 18px; height: 18px; }
+.pf-info { flex: 1; min-width: 0; }
+.pf { font-weight: 600; font-size: 14px; display: block; line-height: 1.3; }
+.pf-note { font-size: 12px; color: var(--muted); display: block; margin-top: 1px; }
+.btn-slot { flex: none; }
+
+/* macOS 未签名首次打开提示：沿用下载卡片的暖底 + 大圆角，蓝色 eyebrow，不用警示色 */
+.mac-notice {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin-top: var(--space-5); padding: 18px 22px;
+  background: var(--surface-warm); border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.mac-notice .notice-icon {
+  width: 20px; height: 20px; flex: none; margin-top: 2px; color: var(--blue);
+}
+.mac-notice .notice-body { min-width: 0; }
+.mac-notice .notice-label {
+  font-family: var(--font-mono); font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 6px;
+}
+.mac-notice .notice-text { font-size: 13.5px; line-height: 1.7; color: var(--fg-2); }
+.mac-notice .notice-text b { font-weight: 600; color: var(--fg); }
+
+/* ============================================================
+   理念区
+   ============================================================ */
+.values-section { background: var(--surface-warm); border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.value-card {
+  padding: 26px; border-radius: var(--radius-lg);
+  background: var(--surface); border: 1px solid var(--border);
+  transition: transform var(--motion-base) var(--ease), border-color var(--motion-base) var(--ease);
+}
+.value-card:hover { transform: translateY(-2px); border-color: var(--fg-2); }
+.value-num { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--blue); font-weight: 500; }
+.value-card h3 { margin-top: 10px; font-size: 18px; font-weight: 700; line-height: 1.3; }
+.value-card p { margin-top: 8px; font-size: 14px; color: var(--fg-2); line-height: 1.7; }
+.value-card:nth-child(2) .value-num { color: var(--red); }
+
+/* ============================================================
+   页脚
+   ============================================================ */
+.site-footer { padding: 36px 0 44px; }
+.site-footer .container { text-align: center; }
+.footer-copy { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.footer-copy a { color: var(--fg-2); transition: color var(--motion-fast) var(--ease); }
+.footer-copy a:hover { color: var(--blue); }
+
+/* ============================================================
+   滚动显现
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* ============================================================
+   响应式
+   ============================================================ */
+@media (max-width: 900px) {
+  .products-grid, .download-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  .hero-launchers { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 680px) {
+  .nav-links { display: none; }
+  .hero-launchers { grid-template-columns: 1fr 1fr; }
+  .section { padding: var(--space-12) 0; }
+  .mac-notice { padding: 15px 16px; gap: 10px; }
+}
+@media (max-width: 420px) {
+  .hero-launchers { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-nav" data-od-id="nav-primary">
+  <div class="container">
+    <a class="brand" href="#top" data-od-id="nav-brand" data-i18n-aria="nav.brand.aria">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span><span data-i18n="nav.brand">律 Lyu</span><span class="brand-sub" data-i18n="nav.brandSub">SERIES</span></span>
+    </a>
+    <nav class="nav-links" aria-label="主导航" data-i18n-aria="nav.aria">
+      <a href="#products" data-od-id="nav-products" data-i18n="nav.products">产品</a>
+      <a href="#download" data-od-id="nav-download" data-i18n="nav.download">下载</a>
+      <a href="#values" data-od-id="nav-values" data-i18n="nav.values">理念</a>
+      <a href="https://bayonetta.github.io/" target="_blank" rel="noopener" data-od-id="nav-developer" data-i18n="nav.developer">关于开发者</a>
+    </nav>
+    <div class="nav-controls">
+      <button class="icon-btn theme-toggle" type="button" data-theme-toggle data-i18n-aria="theme.light">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.3A8.3 8.3 0 1 1 9.7 3.5a6.8 6.8 0 1 0 10.8 10.8Z"/></svg>
+      </button>
+      <label class="lang-switch">
+        <span class="sr-only" data-i18n="lang.label">语言</span>
+        <select data-lang-select data-i18n-aria="lang.label">
+          <option value="zh">中文</option>
+          <option value="en">EN</option>
+          <option value="ja">日本語</option>
+        </select>
+      </label>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" data-od-id="page-hero">
+    <div class="hero-watermark" aria-hidden="true">律</div>
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <p class="hero-eyebrow" data-i18n="hero.eyebrow">Digital Wellness · 数字健康</p>
+      <h1 class="hero-title">
+        <span data-i18n="hero.title">万物皆有律，</span><br>
+        <span class="accent-red" data-i18n="hero.title2">掌控你的生活节奏。</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero.sub">律系列专注于数字健康——从专注力、屏幕自律到脊柱与视力，用克制而科学的方法，帮你把生活节奏重新握在手里。</p>
+      <svg class="hero-rhythm" viewBox="0 0 240 20" width="240" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="8" y1="18" x2="8" y2="5"/><line x1="33" y1="18" x2="33" y2="12"/>
+        <line x1="58" y1="18" x2="58" y2="5"/><line x1="83" y1="18" x2="83" y2="12"/>
+        <line x1="108" y1="18" x2="108" y2="5"/><line x1="133" y1="18" x2="133" y2="12"/>
+        <line x1="158" y1="18" x2="158" y2="5"/><line x1="183" y1="18" x2="183" y2="12"/>
+        <line x1="208" y1="18" x2="208" y2="5"/><line x1="233" y1="18" x2="233" y2="12"/>
+      </svg>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="#products" data-od-id="cta-hero-browse" data-i18n="hero.browse">浏览产品</a>
+        <a class="btn btn-ghost btn-lg" href="#download" data-od-id="cta-hero-download" data-i18n="hero.download">直接下载</a>
+      </div>
+      <div class="hero-launchers">
+        <a class="launcher" href="#product-mind" data-od-id="hero-launcher-mind" data-i18n-aria="hero.launcher.mind.aria">
+          <span class="launcher-icon"><img src="images/lyu-mind.png" alt="" aria-hidden="true"></span>
+          <span class="launcher-info">
+            <span class="launcher-name" data-i18n="p.mind.name">律·思维</span>
+            <span class="launcher-desc" data-i18n="p.mind.kind">专注力训练</span>
+          </span>
+        </a>
+        <a class="launcher" href="#product-space" data-od-id="hero-launcher-space" data-i18n-aria="hero.launcher.space.aria">
+          <span class="launcher-icon"><img src="images/lyu-space.png" alt="" aria-hidden="true"></span>
+          <span class="launcher-info">
+            <span class="launcher-name" data-i18n="p.space.name">律·空间</span>
+            <span class="launcher-desc" data-i18n="p.space.kind">屏幕自律</span>
+          </span>
+        </a>
+        <a class="launcher" href="#product-align" data-od-id="hero-launcher-align" data-i18n-aria="hero.launcher.align.aria">
+          <span class="launcher-icon"><img src="images/lyu-align.png" alt="" aria-hidden="true"></span>
+          <span class="launcher-info">
+            <span class="launcher-name" data-i18n="p.align.name">律·正</span>
+            <span class="launcher-desc" data-i18n="p.align.kind">脊柱矫正</span>
+          </span>
+        </a>
+        <a class="launcher" href="#product-vision" data-od-id="hero-launcher-vision" data-i18n-aria="hero.launcher.vision.aria">
+          <span class="launcher-icon"><img src="images/lyu-vision.png" alt="" aria-hidden="true"></span>
+          <span class="launcher-info">
+            <span class="launcher-name" data-i18n="p.vision.name">律·眸</span>
+            <span class="launcher-desc" data-i18n="p.vision.kind">视力训练</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 产品 ===== -->
+  <section id="products" class="section" data-od-id="section-products">
+    <div class="container">
+      <header class="section-head center">
+        <p class="eyebrow" data-i18n="products.eyebrow">Products · 产品</p>
+        <h2 data-i18n="products.title">一个系列，四件小事</h2>
+        <p class="section-lead" data-i18n="products.lead">专注、自律、姿态、视力——数字生活里最容易失守的四个地方，也是我们最先补上的四块。</p>
+      </header>
+
+      <div class="products-grid">
+        <!-- Mind -->
+        <article id="product-mind" class="product-card reveal" data-od-id="product-card-mind">
+          <div class="pcard-head">
+            <span class="pcard-icon"><img src="images/lyu-mind.png" alt="" aria-hidden="true"></span>
+            <div class="pcard-meta">
+              <span class="pcard-kind" data-i18n="p.mind.kind">专注力训练</span>
+              <h3 class="pcard-name" data-i18n="p.mind.name">律·思维</h3>
+            </div>
+            <span class="badge badge-live pcard-badge"><span class="badge-dot" aria-hidden="true"></span><span data-i18n="p.mind.badge">已上线</span></span>
+          </div>
+          <p class="pcard-slogan" data-i18n="p.mind.slogan">目光所至，思维破界。</p>
+          <p class="pcard-desc" data-i18n="p.mind.desc">基于经典的舒尔特方格训练法，通过高强度的视觉搜索训练，瞬间激活大脑的「冷启动」状态。工作前热身，还是日常提升专注力，它都是你大脑的磨刀石。</p>
+          <ul class="pcard-features">
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.mind.f1">舒尔特方格 · 5×5–9×9</span></span><span class="fchip-kbd" data-i18n="p.mind.f1k">经典 3×3–9×9</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.mind.f2">三种模式 · 数字 / 汉字 / 字母</span></span><span class="fchip-kbd" data-i18n="p.mind.f2k">数字 · 汉字 · 字母</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.mind.f3">成绩曲线 · 专注度追踪</span></span><span class="fchip-kbd" data-i18n="p.mind.f3k">历史曲线</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.mind.f4">鸿蒙实况窗 · 每日热脑</span></span><span class="fchip-kbd" data-i18n="p.mind.f4k">HarmonyOS</span></li>
+          </ul>
+          <div class="pcard-foot">
+            <a class="btn btn-primary" href="https://appgallery.huawei.com/app/detail?id=com.lyu.mind" target="_blank" rel="noopener" data-od-id="cta-mind" data-i18n="p.mind.cta">在 AppGallery 下载</a>
+            <span class="pcard-plat" data-i18n="p.mind.plat">Harmony OS · 已上线</span>
+          </div>
+        </article>
+
+        <!-- Space -->
+        <article id="product-space" class="product-card reveal" data-accent="red" data-od-id="product-card-space">
+          <div class="pcard-head">
+            <span class="pcard-icon"><img src="images/lyu-space.png" alt="" aria-hidden="true"></span>
+            <div class="pcard-meta">
+              <span class="pcard-kind" data-i18n="p.space.kind">屏幕自律</span>
+              <h3 class="pcard-name" data-i18n="p.space.name">律·空间</h3>
+            </div>
+            <span class="badge badge-soon pcard-badge"><span data-i18n="p.space.badge">即将推出</span></span>
+          </div>
+          <p class="pcard-slogan" data-i18n="p.space.slogan">关上纷扰的门，打开自由的窗。</p>
+          <p class="pcard-desc" data-i18n="p.space.desc">极致的白名单锁机工具，仅保留真正需要的应用，物理阻断无意识刷手机的习惯。自律，即自由。</p>
+          <ul class="pcard-features">
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.space.f1">白名单锁机</span></span><span class="fchip-kbd" data-i18n="p.space.f1k">只留必需</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.space.f2">会话计时 · 到点即锁</span></span><span class="fchip-kbd" data-i18n="p.space.f2k">番茄式</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.space.f3">锁屏引导 · 呼吸放松</span></span><span class="fchip-kbd" data-i18n="p.space.f3k">呼吸节律</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.space.f4">桌面版 · Windows / macOS</span></span><span class="fchip-kbd" data-i18n="p.space.f4k">双平台</span></li>
+          </ul>
+          <div class="pcard-foot">
+            <a class="btn btn-primary" href="#dl-space" data-target-card="dl-space" data-od-id="cta-space" data-i18n="p.space.cta">下载 律·空间</a>
+            <span class="pcard-plat" data-i18n="p.space.plat">Windows · macOS</span>
+          </div>
+        </article>
+
+        <!-- Align -->
+        <article id="product-align" class="product-card reveal" data-od-id="product-card-align">
+          <div class="pcard-head">
+            <span class="pcard-icon"><img src="images/lyu-align.png" alt="" aria-hidden="true"></span>
+            <div class="pcard-meta">
+              <span class="pcard-kind" data-i18n="p.align.kind">脊柱矫正</span>
+              <h3 class="pcard-name" data-i18n="p.align.name">律·正</h3>
+            </div>
+            <span class="badge badge-live pcard-badge"><span class="badge-dot" aria-hidden="true"></span><span data-i18n="p.align.badge">已上线</span></span>
+          </div>
+          <p class="pcard-slogan" data-i18n="p.align.slogan">重塑脊柱曲度，挺起人生的脊梁。</p>
+          <p class="pcard-desc" data-i18n="p.align.desc">基于麦肯基疗法，通过反向伸展运动对抗久坐带来的压力。结合鸿蒙传感器与智能体态自测，每天五分钟，让脊柱回归自然曲线。</p>
+          <ul class="pcard-features">
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.align.f1">麦肯基疗法</span></span><span class="fchip-kbd" data-i18n="p.align.f1k">反向伸展</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.align.f2">体态自测 · 传感器</span></span><span class="fchip-kbd" data-i18n="p.align.f2k">智能检测</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.align.f3">每日五分钟课程</span></span><span class="fchip-kbd" data-i18n="p.align.f3k">5 分钟</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.align.f4">鸿蒙多屏流转</span></span><span class="fchip-kbd" data-i18n="p.align.f4k">HarmonyOS</span></li>
+          </ul>
+          <div class="pcard-foot">
+            <a class="btn btn-primary" href="https://appgallery.huawei.com/app/detail?id=com.lyu.align" target="_blank" rel="noopener" data-od-id="cta-align" data-i18n="p.align.cta">在 AppGallery 下载</a>
+            <span class="pcard-plat" data-i18n="p.align.plat">Harmony OS · 已上线</span>
+          </div>
+        </article>
+
+        <!-- Vision -->
+        <article id="product-vision" class="product-card reveal" data-od-id="product-card-vision">
+          <div class="pcard-head">
+            <span class="pcard-icon"><img src="images/lyu-vision.png" alt="" aria-hidden="true"></span>
+            <div class="pcard-meta">
+              <span class="pcard-kind" data-i18n="p.vision.kind">视力训练</span>
+              <h3 class="pcard-name" data-i18n="p.vision.name">律·眸</h3>
+            </div>
+            <span class="badge badge-live pcard-badge"><span class="badge-dot" aria-hidden="true"></span><span data-i18n="p.vision.badge">已上线</span></span>
+          </div>
+          <p class="pcard-slogan" data-i18n="p.vision.slogan">拂去视界的尘埃，重现清晰目光。</p>
+          <p class="pcard-desc" data-i18n="p.vision.desc">基于贝茨视力训练法与加博尔原理，通过动态追踪与焦距切换，缓解睫状肌痉挛。支持多屏流转，利用大屏引导眼球运动。</p>
+          <ul class="pcard-features">
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.vision.f1">贝茨训练法</span></span><span class="fchip-kbd" data-i18n="p.vision.f1k">Bates 法</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.vision.f2">加博尔贴片 · 视敏度</span></span><span class="fchip-kbd" data-i18n="p.vision.f2k">Gabor</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.vision.f3">动态追踪 · 焦距切换</span></span><span class="fchip-kbd" data-i18n="p.vision.f3k">眼肌放松</span></li>
+            <li class="fchip"><span class="fchip-name"><span class="fchip-dot" aria-hidden="true"></span><span data-i18n="p.vision.f4">多屏流转 · 大屏引导</span></span><span class="fchip-kbd" data-i18n="p.vision.f4k">多屏</span></li>
+          </ul>
+          <div class="pcard-foot">
+            <a class="btn btn-primary" href="https://appgallery.huawei.com/app/detail?id=com.lyu.vision" target="_blank" rel="noopener" data-od-id="cta-vision" data-i18n="p.vision.cta">在 AppGallery 下载</a>
+            <span class="pcard-plat" data-i18n="p.vision.plat">Harmony OS · 已上线</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 下载 ===== -->
+  <section id="download" class="section" data-od-id="section-download">
+    <div class="container">
+      <header class="section-head center">
+        <p class="eyebrow" data-i18n="download.eyebrow">Download · 下载</p>
+        <h2 data-i18n="download.title">下载律系列</h2>
+        <p class="section-lead" data-i18n="download.lead">已上线平台可直接下载；待上线的平台会在发布后第一时间补上。</p>
+      </header>
+
+      <div class="download-grid">
+        <!-- Mind download card -->
+        <div class="download-card" id="dl-mind" data-od-id="download-card-mind">
+          <div class="dcard-head">
+            <span class="dcard-dot"><span aria-hidden="true"></span></span>
+            <span class="dcard-name" data-i18n="p.mind.name">律·思维</span>
+            <span class="dcard-sub" data-i18n="dl.mind.sub">Lyu · Mind</span>
+          </div>
+          <div class="platform-row" data-dl="mind:harmony">
+            <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.6h3"/></svg></span>
+            <span class="pf-info">
+              <span class="pf" data-i18n="platform.harmony">Harmony OS</span>
+              <span class="pf-note" data-i18n="dl.mind.harmony.note">AppGallery 已上线</span>
+            </span>
+            <div class="btn-slot" data-btn="mind:harmony">
+              <a class="btn btn-primary btn-sm" href="https://appgallery.huawei.com/app/detail?id=com.lyu.mind" target="_blank" rel="noopener" data-od-id="dl-mind-harmony" data-i18n="download.btn">下载</a>
+            </div>
+          </div>
+          <div class="platform-row" data-dl="mind:ios">
+            <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg></span>
+            <span class="pf-info">
+              <span class="pf" data-i18n="platform.ios">iOS</span>
+              <span class="pf-note" data-i18n="dl.mind.ios.note">App Store 待上线</span>
+            </span>
+            <div class="btn-slot" data-btn="mind:ios"><span class="btn btn-sm btn-pending" data-i18n="download.soon">待上线</span></div>
+          </div>
+          <div class="platform-row" data-dl="mind:android">
+            <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9c0-2.5 2.2-4.4 5-4.4S17 6.5 17 9"/><path d="M5.5 9.2h13"/><path d="M5.5 9.2v4.6a3.4 3.4 0 0 0 3.4 3.4h6.2a3.4 3.4 0 0 0 3.4-3.4V9.2"/><circle cx="9.6" cy="12.4" r="0.8" fill="currentColor" stroke="none"/><circle cx="14.4" cy="12.4" r="0.8" fill="currentColor" stroke="none"/><path d="M4.2 10.6 2.6 12.2M19.8 10.6l1.6 1.6"/></svg></span>
+            <span class="pf-info">
+              <span class="pf" data-i18n="platform.android">Android</span>
+              <span class="pf-note" data-i18n="dl.mind.android.note">Google Play 待上线</span>
+            </span>
+            <div class="btn-slot" data-btn="mind:android"><span class="btn btn-sm btn-pending" data-i18n="download.soon">待上线</span></div>
+          </div>
+        </div>
+
+        <!-- Space download card -->
+        <div class="download-card" id="dl-space" data-accent="red" data-od-id="download-card-space">
+          <div class="dcard-head">
+            <span class="dcard-dot"><span aria-hidden="true"></span></span>
+            <span class="dcard-name" data-i18n="p.space.name">律·空间</span>
+            <span class="dcard-sub" data-i18n="dl.space.sub">Lyu · Space</span>
+          </div>
+          <div class="platform-row" data-dl="space:macos">
+            <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg></span>
+            <span class="pf-info">
+              <span class="pf" data-i18n="platform.macos">macOS</span>
+              <span class="pf-note" data-i18n="dl.space.macos.note">Apple Silicon · Intel</span>
+            </span>
+            <div class="btn-slot" data-btn="space:macos"><a class="btn btn-primary btn-sm" href="https://www.google.com" target="_blank" rel="noopener" data-i18n="download.btn">下载</a></div>
+          </div>
+          <div class="platform-row" data-dl="space:windows">
+            <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg></span>
+            <span class="pf-info">
+              <span class="pf" data-i18n="platform.windows">Windows</span>
+              <span class="pf-note" data-i18n="dl.space.windows.note">Windows 10 及以上</span>
+            </span>
+            <div class="btn-slot" data-btn="space:windows"><span class="btn btn-sm btn-pending" data-i18n="download.soon">待上线</span></div>
+          </div>
+        </div>
+
+        <!-- Align download card -->
+        <div class="download-card" id="dl-align" data-od-id="download-card-align">
+          <div class="dcard-head">
+            <span class="dcard-dot"><span aria-hidden="true"></span></span>
+            <span class="dcard-name" data-i18n="p.align.name">律·正</span>
+            <span class="dcard-sub" data-i18n="dl.align.sub">Lyu · Align</span>
+          </div>
+          <div class="platform-row" data-dl="align:harmony">
+            <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.6h3"/></svg></span>
+            <span class="pf-info">
+              <span class="pf" data-i18n="platform.harmony">Harmony OS</span>
+              <span class="pf-note" data-i18n="dl.align.harmony.note">AppGallery 已上线</span>
+            </span>
+            <div class="btn-slot" data-btn="align:harmony">
+              <a class="btn btn-primary btn-sm" href="https://appgallery.huawei.com/app/detail?id=com.lyu.align" target="_blank" rel="noopener" data-od-id="dl-align-harmony" data-i18n="download.btn">下载</a>
+            </div>
+          </div>
+          <div class="platform-row" data-dl="align:ios">
+            <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg></span>
+            <span class="pf-info">
+              <span class="pf" data-i18n="platform.ios">iOS</span>
+              <span class="pf-note" data-i18n="dl.align.ios.note">App Store 待上线</span>
+            </span>
+            <div class="btn-slot" data-btn="align:ios"><span class="btn btn-sm btn-pending" data-i18n="download.soon">待上线</span></div>
+          </div>
+          <div class="platform-row" data-dl="align:android">
+            <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9c0-2.5 2.2-4.4 5-4.4S17 6.5 17 9"/><path d="M5.5 9.2h13"/><path d="M5.5 9.2v4.6a3.4 3.4 0 0 0 3.4 3.4h6.2a3.4 3.4 0 0 0 3.4-3.4V9.2"/><circle cx="9.6" cy="12.4" r="0.8" fill="currentColor" stroke="none"/><circle cx="14.4" cy="12.4" r="0.8" fill="currentColor" stroke="none"/><path d="M4.2 10.6 2.6 12.2M19.8 10.6l1.6 1.6"/></svg></span>
+            <span class="pf-info">
+              <span class="pf" data-i18n="platform.android">Android</span>
+              <span class="pf-note" data-i18n="dl.align.android.note">Google Play 待上线</span>
+            </span>
+            <div class="btn-slot" data-btn="align:android"><span class="btn btn-sm btn-pending" data-i18n="download.soon">待上线</span></div>
+          </div>
+        </div>
+
+        <!-- Vision download card -->
+        <div class="download-card" id="dl-vision" data-od-id="download-card-vision">
+          <div class="dcard-head">
+            <span class="dcard-dot"><span aria-hidden="true"></span></span>
+            <span class="dcard-name" data-i18n="p.vision.name">律·眸</span>
+            <span class="dcard-sub" data-i18n="dl.vision.sub">Lyu · Vision</span>
+          </div>
+          <div class="platform-row" data-dl="vision:harmony">
+            <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.6h3"/></svg></span>
+            <span class="pf-info">
+              <span class="pf" data-i18n="platform.harmony">Harmony OS</span>
+              <span class="pf-note" data-i18n="dl.vision.harmony.note">AppGallery 已上线</span>
+            </span>
+            <div class="btn-slot" data-btn="vision:harmony">
+              <a class="btn btn-primary btn-sm" href="https://appgallery.huawei.com/app/detail?id=com.lyu.vision" target="_blank" rel="noopener" data-od-id="dl-vision-harmony" data-i18n="download.btn">下载</a>
+            </div>
+          </div>
+          <div class="platform-row" data-dl="vision:ios">
+            <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg></span>
+            <span class="pf-info">
+              <span class="pf" data-i18n="platform.ios">iOS</span>
+              <span class="pf-note" data-i18n="dl.vision.ios.note">App Store 待上线</span>
+            </span>
+            <div class="btn-slot" data-btn="vision:ios"><span class="btn btn-sm btn-pending" data-i18n="download.soon">待上线</span></div>
+          </div>
+          <div class="platform-row" data-dl="vision:android">
+            <span class="pf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9c0-2.5 2.2-4.4 5-4.4S17 6.5 17 9"/><path d="M5.5 9.2h13"/><path d="M5.5 9.2v4.6a3.4 3.4 0 0 0 3.4 3.4h6.2a3.4 3.4 0 0 0 3.4-3.4V9.2"/><circle cx="9.6" cy="12.4" r="0.8" fill="currentColor" stroke="none"/><circle cx="14.4" cy="12.4" r="0.8" fill="currentColor" stroke="none"/><path d="M4.2 10.6 2.6 12.2M19.8 10.6l1.6 1.6"/></svg></span>
+            <span class="pf-info">
+              <span class="pf" data-i18n="platform.android">Android</span>
+              <span class="pf-note" data-i18n="dl.vision.android.note">Google Play 待上线</span>
+            </span>
+            <div class="btn-slot" data-btn="vision:android"><span class="btn btn-sm btn-pending" data-i18n="download.soon">待上线</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- macOS 未签名首次打开提示：位于下载卡片网格下方，紧邻实际下载路径 -->
+      <aside class="mac-notice" data-od-id="mac-notice" role="note">
+        <svg class="notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        <div class="notice-body">
+          <p class="notice-label" data-i18n="download.mac.label">macOS · 首次打开</p>
+          <p class="notice-text" data-i18n="download.mac.text">首次打开若被系统拦截，请先在「应用程序」文件夹中<b>右键点击 App 选择「打开」</b>。若仍无法启动（macOS 15 及更新版本尤其常见），请打开<b>系统设置 → 隐私与安全性</b>，在「安全性」区域找到该 App 的拦截提示，点击<b>「仍要打开」</b>并确认。</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== 理念 ===== -->
+  <section id="values" class="section values-section" data-od-id="section-values">
+    <div class="container">
+      <header class="section-head center">
+        <p class="eyebrow" data-i18n="values.eyebrow">Values · 理念</p>
+        <h2 data-i18n="values.title">为什么叫「律」？</h2>
+        <p class="section-lead" data-i18n="values.lead">律，是节奏，是秩序，也是克制。我们对数字健康的理解，浓缩成三句话。</p>
+      </header>
+      <div class="values-grid">
+        <div class="value-card reveal" data-od-id="value-card-local">
+          <span class="value-num" data-i18n="values.v1.num">01 · LOCAL-FIRST</span>
+          <h3 data-i18n="values.v1.title">本地优先</h3>
+          <p data-i18n="values.v1.desc">你的数据留在你的设备上。不云端、不追踪、不打扰——私密不是功能，是默认。</p>
+        </div>
+        <div class="value-card reveal" data-od-id="value-card-restraint">
+          <span class="value-num" data-i18n="values.v2.num">02 · RESTRAINT</span>
+          <h3 data-i18n="values.v2.title">克制设计</h3>
+          <p data-i18n="values.v2.desc">只保留真正必要的功能，把界面还给注意力。我们删掉的，比你看到的更多。</p>
+        </div>
+        <div class="value-card reveal" data-od-id="value-card-science">
+          <span class="value-num" data-i18n="values.v3.num">03 · EVIDENCE</span>
+          <h3 data-i18n="values.v3.title">科学为据</h3>
+          <p data-i18n="values.v3.desc">每个方法都来自公开研究与临床实践，不贩卖焦虑，只提供可坚持的日常。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" data-od-id="footer-site">
+  <div class="container">
+    <p class="footer-copy" data-i18n="footer.copyright">© 2025 律 (Lyu) 系列. Designed for Digital Wellness. | <a href="privacy.html" target="_blank" rel="noopener" data-od-id="footer-privacy">隐私政策 Privacy</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============ 发布配置：唯一数据源，改这里即可 ============ */
+  window.LYU_RELEASES = {
+    updatedAt: "2026-08-09",
+    products: {
+      mind: {
+        platforms: {
+          harmony: { url: "https://appgallery.huawei.com/app/detail?id=com.lyu.mind" },
+          ios: { url: "" },
+          android: { url: "" }
+        }
+      },
+      space: {
+        platforms: {
+          /* macOS 已上线：占位直链，替换为真实下载地址即可 */
+          macos: { url: "https://www.google.com" },
+          windows: { url: "" }
+        }
+      },
+      align: {
+        platforms: {
+          harmony: { url: "https://appgallery.huawei.com/app/detail?id=com.lyu.align" },
+          ios: { url: "" },
+          android: { url: "" }
+        }
+      },
+      vision: {
+        platforms: {
+          harmony: { url: "https://appgallery.huawei.com/app/detail?id=com.lyu.vision" },
+          ios: { url: "" },
+          android: { url: "" }
+        }
+      }
+    }
+  };
+
+  /* ============ 多语言字典 ============ */
+  var DICT = {
+    zh: {
+      "meta.title": "律 (Lyu) 系列 · 万物皆有律，掌控你的生活节奏",
+      "meta.description": "律系列专注于数字健康：专注力、屏幕自律、脊柱与视力。克制而科学的方法，把生活节奏重新握在手里。",
+      "nav.brand": "律 Lyu",
+      "nav.brandSub": "SERIES",
+      "nav.brand.aria": "律系列首页",
+      "nav.aria": "主导航",
+      "nav.products": "产品",
+      "nav.download": "下载",
+      "nav.values": "理念",
+      "nav.developer": "关于开发者",
+      "theme.light": "切换到亮色模式",
+      "theme.dark": "切换到夜间模式",
+      "lang.label": "选择语言",
+      "hero.eyebrow": "Digital Wellness · 数字健康",
+      "hero.title": "万物皆有律，",
+      "hero.title2": "掌控你的生活节奏。",
+      "hero.sub": "律系列专注于数字健康——从专注力、屏幕自律到脊柱与视力，用克制而科学的方法，帮你把生活节奏重新握在手里。",
+      "hero.browse": "浏览产品",
+      "hero.download": "直接下载",
+      "hero.launcher.mind.aria": "查看律·思维",
+      "hero.launcher.space.aria": "查看律·空间",
+      "hero.launcher.align.aria": "查看律·正",
+      "hero.launcher.vision.aria": "查看律·眸",
+      "p.mind.name": "律·思维",
+      "p.mind.kind": "专注力训练",
+      "p.mind.badge": "已上线",
+      "p.mind.slogan": "目光所至，思维破界。",
+      "p.mind.desc": "基于经典的舒尔特方格训练法，通过高强度的视觉搜索训练，瞬间激活大脑的「冷启动」状态。工作前热身，还是日常提升专注力，它都是你大脑的磨刀石。",
+      "p.mind.f1": "舒尔特方格 · 5×5–9×9",
+      "p.mind.f1k": "经典 3×3–9×9",
+      "p.mind.f2": "三种模式 · 数字 / 汉字 / 字母",
+      "p.mind.f2k": "数字 · 汉字 · 字母",
+      "p.mind.f3": "成绩曲线 · 专注度追踪",
+      "p.mind.f3k": "历史曲线",
+      "p.mind.f4": "鸿蒙实况窗 · 每日热脑",
+      "p.mind.f4k": "HarmonyOS",
+      "p.mind.cta": "在 AppGallery 下载",
+      "p.mind.plat": "Harmony OS · 已上线",
+      "p.space.name": "律·空间",
+      "p.space.kind": "屏幕自律",
+      "p.space.badge": "即将推出",
+      "p.space.slogan": "关上纷扰的门，打开自由的窗。",
+      "p.space.desc": "极致的白名单锁机工具，仅保留真正需要的应用，物理阻断无意识刷手机的习惯。自律，即自由。",
+      "p.space.f1": "白名单锁机",
+      "p.space.f1k": "只留必需",
+      "p.space.f2": "会话计时 · 到点即锁",
+      "p.space.f2k": "番茄式",
+      "p.space.f3": "锁屏引导 · 呼吸放松",
+      "p.space.f3k": "呼吸节律",
+      "p.space.f4": "桌面版 · Windows / macOS",
+      "p.space.f4k": "双平台",
+      "p.space.cta": "下载 律·空间",
+      "p.space.plat": "Windows · macOS",
+      "p.align.name": "律·正",
+      "p.align.kind": "脊柱矫正",
+      "p.align.badge": "已上线",
+      "p.align.slogan": "重塑脊柱曲度，挺起人生的脊梁。",
+      "p.align.desc": "基于麦肯基疗法，通过反向伸展运动对抗久坐带来的压力。结合鸿蒙传感器与智能体态自测，每天五分钟，让脊柱回归自然曲线。",
+      "p.align.f1": "麦肯基疗法",
+      "p.align.f1k": "反向伸展",
+      "p.align.f2": "体态自测 · 传感器",
+      "p.align.f2k": "智能检测",
+      "p.align.f3": "每日五分钟课程",
+      "p.align.f3k": "5 分钟",
+      "p.align.f4": "鸿蒙多屏流转",
+      "p.align.f4k": "HarmonyOS",
+      "p.align.soon": "敬请期待",
+      "p.align.cta": "在 AppGallery 下载",
+      "p.align.plat": "Harmony OS · 已上线",
+      "p.vision.name": "律·眸",
+      "p.vision.kind": "视力训练",
+      "p.vision.badge": "已上线",
+      "p.vision.slogan": "拂去视界的尘埃，重现清晰目光。",
+      "p.vision.desc": "基于贝茨视力训练法与加博尔原理，通过动态追踪与焦距切换，缓解睫状肌痉挛。支持多屏流转，利用大屏引导眼球运动。",
+      "p.vision.f1": "贝茨训练法",
+      "p.vision.f1k": "Bates 法",
+      "p.vision.f2": "加博尔贴片 · 视敏度",
+      "p.vision.f2k": "Gabor",
+      "p.vision.f3": "动态追踪 · 焦距切换",
+      "p.vision.f3k": "眼肌放松",
+      "p.vision.f4": "多屏流转 · 大屏引导",
+      "p.vision.f4k": "多屏",
+      "p.vision.soon": "敬请期待",
+      "p.vision.cta": "在 AppGallery 下载",
+      "p.vision.plat": "Harmony OS · 已上线",
+      "products.eyebrow": "Products · 产品",
+      "products.title": "一个系列，四件小事",
+      "products.lead": "专注、自律、姿态、视力——数字生活里最容易失守的四个地方，也是我们最先补上的四块。",
+      "download.eyebrow": "Download · 下载",
+      "download.title": "下载律系列",
+      "download.lead": "已上线平台可直接下载；待上线的平台会在发布后第一时间补上。",
+      "download.btn": "下载",
+      "download.soon": "待上线",
+      "download.mac.label": "macOS · 首次打开",
+      "download.mac.text": "首次打开若被系统拦截，请先在「应用程序」文件夹中<b>右键点击 App 选择「打开」</b>。若仍无法启动（macOS 15 及更新版本尤其常见），请打开<b>系统设置 → 隐私与安全性</b>，在「安全性」区域找到该 App 的拦截提示，点击<b>「仍要打开」</b>并确认。",
+      "dl.mind.sub": "Lyu · Mind",
+      "dl.space.sub": "Lyu · Space",
+      "dl.mind.harmony.note": "AppGallery 已上线",
+      "dl.mind.ios.note": "App Store 待上线",
+      "dl.mind.android.note": "Google Play 待上线",
+      "dl.space.macos.note": "Apple Silicon · Intel",
+      "dl.space.windows.note": "Windows 10 及以上",
+      "dl.align.sub": "Lyu · Align",
+      "dl.vision.sub": "Lyu · Vision",
+      "dl.align.harmony.note": "AppGallery 已上线",
+      "dl.align.ios.note": "App Store 待上线",
+      "dl.align.android.note": "Google Play 待上线",
+      "dl.vision.harmony.note": "AppGallery 已上线",
+      "dl.vision.ios.note": "App Store 待上线",
+      "dl.vision.android.note": "Google Play 待上线",
+      "platform.harmony": "Harmony OS",
+      "platform.ios": "iOS",
+      "platform.android": "Android",
+      "platform.macos": "macOS",
+      "platform.windows": "Windows",
+      "values.eyebrow": "Values · 理念",
+      "values.title": "为什么叫「律」？",
+      "values.lead": "律，是节奏，是秩序，也是克制。我们对数字健康的理解，浓缩成三句话。",
+      "values.v1.num": "01 · LOCAL-FIRST",
+      "values.v1.title": "本地优先",
+      "values.v1.desc": "你的数据留在你的设备上。不云端、不追踪、不打扰——私密不是功能，是默认。",
+      "values.v2.num": "02 · RESTRAINT",
+      "values.v2.title": "克制设计",
+      "values.v2.desc": "只保留真正必要的功能，把界面还给注意力。我们删掉的，比你看到的更多。",
+      "values.v3.num": "03 · EVIDENCE",
+      "values.v3.title": "科学为据",
+      "values.v3.desc": "每个方法都来自公开研究与临床实践，不贩卖焦虑，只提供可坚持的日常。",
+      "footer.copyright": "© 2025 律 (Lyu) 系列. Designed for Digital Wellness. | <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\" data-od-id=\"footer-privacy\">隐私政策 Privacy</a>"
+    },
+
+    en: {
+      "meta.title": "Lyu Series · Everything has a rhythm",
+      "meta.description": "The Lyu series is built for digital wellness: focus, screen discipline, posture, and eyesight. Restrained, evidence-based tools that hand the rhythm of your day back to you.",
+      "nav.brand": "Lyu Series",
+      "nav.brandSub": "SERIES",
+      "nav.brand.aria": "Lyu series home",
+      "nav.aria": "Main navigation",
+      "nav.products": "Products",
+      "nav.download": "Download",
+      "nav.values": "Values",
+      "nav.developer": "About the developer",
+      "theme.light": "Switch to light mode",
+      "theme.dark": "Switch to dark mode",
+      "lang.label": "Choose language",
+      "hero.eyebrow": "Digital Wellness",
+      "hero.title": "Everything has a rhythm.",
+      "hero.title2": "Master the pace of your life.",
+      "hero.sub": "The Lyu series is built for digital wellness — focus, screen discipline, posture, and eyesight. Restrained, evidence-based tools that hand the rhythm of your day back to you.",
+      "hero.browse": "Browse products",
+      "hero.download": "Download now",
+      "hero.launcher.mind.aria": "View Lyu · Mind",
+      "hero.launcher.space.aria": "View Lyu · Space",
+      "hero.launcher.align.aria": "View Lyu · Align",
+      "hero.launcher.vision.aria": "View Lyu · Vision",
+      "p.mind.name": "Lyu · Mind",
+      "p.mind.kind": "Focus Training",
+      "p.mind.badge": "Available",
+      "p.mind.slogan": "Sharpen your focus with every glance.",
+      "p.mind.desc": "Built on the classic Schulte Grid method, Lyu·Mind uses intense visual-search drills to jolt your brain out of its cold-start fog — a whetstone for your attention before work or any deep session.",
+      "p.mind.f1": "Schulte grids · 3×3–9×9",
+      "p.mind.f1k": "Classic 3×3–9×9",
+      "p.mind.f2": "Three modes · numbers / kanji / letters",
+      "p.mind.f2k": "3 modes",
+      "p.mind.f3": "Progress curve · focus tracking",
+      "p.mind.f3k": "History",
+      "p.mind.f4": "Harmony live window · daily warm-up",
+      "p.mind.f4k": "HarmonyOS",
+      "p.mind.cta": "Get it on AppGallery",
+      "p.mind.plat": "Harmony OS · Available",
+      "p.space.name": "Lyu · Space",
+      "p.space.kind": "Screen Discipline",
+      "p.space.badge": "Coming soon",
+      "p.space.slogan": "Shut the noise out. Open the window to freedom.",
+      "p.space.desc": "A ruthless whitelist lock that keeps only the apps you truly need — physically blocking mindless scrolling. Discipline, it turns out, is freedom.",
+      "p.space.f1": "Whitelist lock",
+      "p.space.f1k": "Keep essentials",
+      "p.space.f2": "Session timer · lock on time",
+      "p.space.f2k": "Pomodoro",
+      "p.space.f3": "Calming lock screen · breathing",
+      "p.space.f3k": "Breathing",
+      "p.space.f4": "Desktop · Windows / macOS",
+      "p.space.f4k": "2 platforms",
+      "p.space.cta": "Download Lyu · Space",
+      "p.space.plat": "Windows · macOS",
+      "p.align.name": "Lyu · Align",
+      "p.align.kind": "Posture Correction",
+      "p.align.badge": "Available",
+      "p.align.slogan": "Restore your curve. Stand tall again.",
+      "p.align.desc": "Based on the McKenzie Method, Lyu·Align fights back against the toll of sitting with directed extension. Five minutes a day restores your spine's natural curve.",
+      "p.align.f1": "McKenzie Method",
+      "p.align.f1k": "Extension",
+      "p.align.f2": "Posture self-check · sensors",
+      "p.align.f2k": "Smart detect",
+      "p.align.f3": "Five-minute daily routine",
+      "p.align.f3k": "5 min",
+      "p.align.f4": "Harmony multi-screen",
+      "p.align.f4k": "HarmonyOS",
+      "p.align.soon": "Coming soon",
+      "p.align.cta": "Get it on AppGallery",
+      "p.align.plat": "Harmony OS · Available",
+      "p.vision.name": "Lyu · Vision",
+      "p.vision.kind": "Vision Training",
+      "p.vision.badge": "Available",
+      "p.vision.slogan": "Clear the haze. See clearly again.",
+      "p.vision.desc": "Drawing on the Bates method and Gabor-patch principles, Lyu·Vision uses dynamic tracking and focus shifts to relax tired ciliary muscles — guided on large screens.",
+      "p.vision.f1": "Bates method",
+      "p.vision.f1k": "Bates",
+      "p.vision.f2": "Gabor patches · acuity",
+      "p.vision.f2k": "Gabor",
+      "p.vision.f3": "Dynamic tracking · focus shifts",
+      "p.vision.f3k": "Eye relax",
+      "p.vision.f4": "Multi-screen · big-screen guidance",
+      "p.vision.f4k": "Multi-screen",
+      "p.vision.soon": "Coming soon",
+      "p.vision.cta": "Get it on AppGallery",
+      "p.vision.plat": "Harmony OS · Available",
+      "products.eyebrow": "Products",
+      "products.title": "One series, four small things",
+      "products.lead": "Focus, discipline, posture, eyesight — the four places digital life wears you down first. And the four we started with.",
+      "download.eyebrow": "Download",
+      "download.title": "Download the Lyu series",
+      "download.lead": "Available platforms are ready to download. The rest go live the moment they ship.",
+      "download.btn": "Download",
+      "download.soon": "Coming soon",
+      "download.mac.label": "macOS · First launch",
+      "download.mac.text": "If macOS blocks the app on first launch, <b>right-click the app in Applications and choose &quot;Open&quot;</b>. If it still will not start (especially on macOS 15 and later), go to <b>System Settings → Privacy &amp; Security</b>, find the blocked-app notice under Security, then click <b>&quot;Open Anyway&quot;</b> and confirm.",
+      "dl.mind.sub": "Lyu · Mind",
+      "dl.space.sub": "Lyu · Space",
+      "dl.mind.harmony.note": "Live on AppGallery",
+      "dl.mind.ios.note": "App Store · soon",
+      "dl.mind.android.note": "Google Play · soon",
+      "dl.space.macos.note": "Apple Silicon · Intel",
+      "dl.space.windows.note": "Windows 10 and later",
+      "dl.align.sub": "Lyu · Align",
+      "dl.vision.sub": "Lyu · Vision",
+      "dl.align.harmony.note": "Live on AppGallery",
+      "dl.align.ios.note": "App Store · soon",
+      "dl.align.android.note": "Google Play · soon",
+      "dl.vision.harmony.note": "Live on AppGallery",
+      "dl.vision.ios.note": "App Store · soon",
+      "dl.vision.android.note": "Google Play · soon",
+      "platform.harmony": "Harmony OS",
+      "platform.ios": "iOS",
+      "platform.android": "Android",
+      "platform.macos": "macOS",
+      "platform.windows": "Windows",
+      "values.eyebrow": "Values",
+      "values.title": "Why the name “Lyu”?",
+      "values.lead": "Lyu means rhythm, order, and restraint. Our take on digital wellness, in three sentences.",
+      "values.v1.num": "01 · LOCAL-FIRST",
+      "values.v1.title": "Local-first",
+      "values.v1.desc": "Your data stays on your device. No cloud, no tracking, no noise — privacy isn't a feature, it's the default.",
+      "values.v2.num": "02 · RESTRAINT",
+      "values.v2.title": "Restraint by design",
+      "values.v2.desc": "Only what truly matters survives. We return the screen to your attention — we cut more than you ever see.",
+      "values.v3.num": "03 · EVIDENCE",
+      "values.v3.title": "Science first",
+      "values.v3.desc": "Every method is grounded in published research and clinical practice. No fear-mongering, just habits you can keep.",
+      "footer.copyright": "© 2025 Lyu Series. Designed for Digital Wellness. | <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\" data-od-id=\"footer-privacy\">Privacy Policy</a>"
+    },
+
+    ja: {
+      "meta.title": "律（Lyu）シリーズ · すべてに律がある",
+      "meta.description": "律シリーズはデジタルウェルネスのための製品群。集中力、スマホ断ち、姿勢、視力を、科学的で控えめなアプローチで整えます。",
+      "nav.brand": "律 Lyu",
+      "nav.brandSub": "SERIES",
+      "nav.brand.aria": "律シリーズ ホーム",
+      "nav.aria": "メインナビゲーション",
+      "nav.products": "製品",
+      "nav.download": "ダウンロード",
+      "nav.values": "理念",
+      "nav.developer": "開発者について",
+      "theme.light": "ライトモードに切り替え",
+      "theme.dark": "ダークモードに切り替え",
+      "lang.label": "言語を選択",
+      "hero.eyebrow": "Digital Wellness · デジタルウェルネス",
+      "hero.title": "すべてに律がある。",
+      "hero.title2": "あなたのリズムを手に。",
+      "hero.sub": "律シリーズはデジタルウェルネスのための製品群。集中力、スマホ断ち、姿勢、視力を、科学的で控えめなアプローチで整え、生活のリズムを取り戻します。",
+      "hero.browse": "製品を見る",
+      "hero.download": "ダウンロード",
+      "hero.launcher.mind.aria": "律・マインドを見る",
+      "hero.launcher.space.aria": "律・スペースを見る",
+      "hero.launcher.align.aria": "律・アラインを見る",
+      "hero.launcher.vision.aria": "律・ビジョンを見る",
+      "p.mind.name": "律・マインド",
+      "p.mind.kind": "集中力トレーニング",
+      "p.mind.badge": "リリース済み",
+      "p.mind.slogan": "視線の先で、思考を研ぎ澄ます。",
+      "p.mind.desc": "古典的なシュルテグリッド法に基づき、高強度の視覚探索トレーニングで脳を即座に「コールドスタート」。仕事前のウォームアップにも、日々の集中力アップにも最適な、思考の砥石です。",
+      "p.mind.f1": "シュルテグリッド 3×3–9×9",
+      "p.mind.f1k": "クラシック 3×3–9×9",
+      "p.mind.f2": "数字・漢字・アルファベット",
+      "p.mind.f2k": "3 モード",
+      "p.mind.f3": "成績カーブ・集中度トラッキング",
+      "p.mind.f3k": "履歴",
+      "p.mind.f4": "Harmony ライブウィンドウ・毎日",
+      "p.mind.f4k": "HarmonyOS",
+      "p.mind.cta": "AppGallery で入手",
+      "p.mind.plat": "Harmony OS · リリース済み",
+      "p.space.name": "律・スペース",
+      "p.space.kind": "スクリーン断ち",
+      "p.space.badge": "近日公開",
+      "p.space.slogan": "騒がしさのドアを閉め、自由の窓を開く。",
+      "p.space.desc": "本当に必要なアプリだけを残す、ホワイトリスト式の最強ロック。無意識のスマホいじりを物理的に遮断します。自律こそ自由。",
+      "p.space.f1": "ホワイトリストロック",
+      "p.space.f1k": "必要最小限",
+      "p.space.f2": "セッションタイマー・時間でロック",
+      "p.space.f2k": "ポモドーロ",
+      "p.space.f3": "落ち着くロック画面・呼吸",
+      "p.space.f3k": "呼吸",
+      "p.space.f4": "デスクトップ版 Windows / macOS",
+      "p.space.f4k": "2 プラットフォーム",
+      "p.space.cta": "律・スペースをダウンロード",
+      "p.space.plat": "Windows · macOS",
+      "p.align.name": "律・アライン",
+      "p.align.kind": "姿勢矯正",
+      "p.align.badge": "リリース済み",
+      "p.align.slogan": "背骨のカーブを取り戻し、まっすぐに。",
+      "p.align.desc": "マッケンジー法に基づき、反らす運動で座りっぱなしの負担に対抗。センサーと姿勢セルフチェックで、毎日 5 分、背骨を自然なカーブへ。",
+      "p.align.f1": "マッケンジー法",
+      "p.align.f1k": "伸展運動",
+      "p.align.f2": "姿勢セルフチェック・センサー",
+      "p.align.f2k": "スマート検知",
+      "p.align.f3": "毎日 5 分のプログラム",
+      "p.align.f3k": "5 分",
+      "p.align.f4": "Harmony マルチスクリーン",
+      "p.align.f4k": "HarmonyOS",
+      "p.align.soon": "近日公開",
+      "p.align.cta": "AppGallery で入手",
+      "p.align.plat": "Harmony OS · リリース済み",
+      "p.vision.name": "律・ビジョン",
+      "p.vision.kind": "視力トレーニング",
+      "p.vision.badge": "リリース済み",
+      "p.vision.slogan": "視界の曇りを拭い、クリアな目を取り戻す。",
+      "p.vision.desc": "ベイツ法とガボールパッチの原理を応用し、動的トラッキングと焦点切替で毛様体筋のけいれんを和らげます。大画面で眼球運動をガイドします。",
+      "p.vision.f1": "ベイツ法",
+      "p.vision.f1k": "ベイツ",
+      "p.vision.f2": "ガボールパッチ・視力",
+      "p.vision.f2k": "Gabor",
+      "p.vision.f3": "動的トラッキング・焦点切替",
+      "p.vision.f3k": "目のリラックス",
+      "p.vision.f4": "マルチスクリーン・大画面",
+      "p.vision.f4k": "マルチ",
+      "p.vision.soon": "近日公開",
+      "p.vision.cta": "AppGallery で入手",
+      "p.vision.plat": "Harmony OS · リリース済み",
+      "products.eyebrow": "Products · 製品",
+      "products.title": "ひとつのシリーズ、四つの小さなこと",
+      "products.lead": "集中力、自律、姿勢、視力——デジタル生活で最初に崩れる四つの場所。私たちが最初に補強した四つでもあります。",
+      "download.eyebrow": "Download · ダウンロード",
+      "download.title": "律シリーズをダウンロード",
+      "download.lead": "リリース済みプラットフォームはすぐに入手できます。未公開のものは公開と同時に追加されます。",
+      "download.btn": "ダウンロード",
+      "download.soon": "近日公開",
+      "download.mac.label": "macOS · 初回起動",
+      "download.mac.text": "初回起動時にブロックされた場合は、まず「アプリケーション」フォルダで<b>アプリを右クリックして「開く」を選択</b>してください。それでも起動しない場合（macOS 15 以降では特に多く発生します）は、<b>システム設定 → プライバシーとセキュリティ</b>を開き、「セキュリティ」欄にあるブロックの通知から<b>「このまま開く」</b>をクリックして確認してください。",
+      "dl.mind.sub": "Lyu · Mind",
+      "dl.space.sub": "Lyu · Space",
+      "dl.mind.harmony.note": "AppGallery で公開中",
+      "dl.mind.ios.note": "App Store 近日公開",
+      "dl.mind.android.note": "Google Play 近日公開",
+      "dl.space.macos.note": "Apple Silicon · Intel",
+      "dl.space.windows.note": "Windows 10 以上",
+      "dl.align.sub": "Lyu · Align",
+      "dl.vision.sub": "Lyu · Vision",
+      "dl.align.harmony.note": "AppGallery で公開中",
+      "dl.align.ios.note": "App Store 近日公開",
+      "dl.align.android.note": "Google Play 近日公開",
+      "dl.vision.harmony.note": "AppGallery で公開中",
+      "dl.vision.ios.note": "App Store 近日公開",
+      "dl.vision.android.note": "Google Play 近日公開",
+      "platform.harmony": "Harmony OS",
+      "platform.ios": "iOS",
+      "platform.android": "Android",
+      "platform.macos": "macOS",
+      "platform.windows": "Windows",
+      "values.eyebrow": "Values · 理念",
+      "values.title": "なぜ「律」なのか",
+      "values.lead": "「律」はリズムであり、秩序であり、抑制。デジタルウェルネスへの私たちの考えを、三つの言葉に凝縮しました。",
+      "values.v1.num": "01 · LOCAL-FIRST",
+      "values.v1.title": "ローカルファースト",
+      "values.v1.desc": "データはすべてデバイス上に。クラウドなし、トラッキングなし、邪魔なし——プライバシーは機能ではなく、デフォルトです。",
+      "values.v2.num": "02 · RESTRAINT",
+      "values.v2.title": "抑制のデザイン",
+      "values.v2.desc": "本当に必要な機能だけを残す。画面を注意力に返すため、私たちは見えない分も削ぎ落とします。",
+      "values.v3.num": "03 · EVIDENCE",
+      "values.v3.title": "科学に基づく",
+      "values.v3.desc": "すべての手法は公開された研究と臨床実践に基づき、不安を煽らず、続けられる習慣を提供します。",
+      "footer.copyright": "© 2025 律（Lyu）シリーズ. Designed for Digital Wellness. | <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\" data-od-id=\"footer-privacy\">プライバシー</a>"
+    }
+  };
+
+  var currentLang = "zh";
+
+  function t(key) {
+    var d = DICT[currentLang];
+    return d && d[key] != null ? d[key] : "";
+  }
+
+  /* ============ 发布状态渲染 ============ */
+  function renderReleases() {
+    var rel = window.LYU_RELEASES;
+    if (!rel) return;
+    Object.keys(rel.products).forEach(function (pid) {
+      var prod = rel.products[pid];
+      Object.keys(prod.platforms).forEach(function (pf) {
+        var cfg = prod.platforms[pf];
+        var slot = document.querySelector('[data-btn="' + pid + ':' + pf + '"]');
+        if (!slot) return;
+        if (cfg.url) {
+          slot.innerHTML = '<a class="btn btn-primary btn-sm" href="' + cfg.url + '" target="_blank" rel="noopener" data-i18n="download.btn">' + t("download.btn") + "</a>";
+        } else {
+          slot.innerHTML = '<span class="btn btn-sm btn-pending" data-i18n="download.soon">' + t("download.soon") + "</span>";
+        }
+      });
+    });
+    applyI18n();
+  }
+
+  /* ============ 语言应用 ============ */
+  function applyI18n() {
+    var dict = DICT[currentLang];
+    if (!dict) return;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var k = el.getAttribute("data-i18n");
+      if (dict[k] != null) el.innerHTML = dict[k];
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      var k = el.getAttribute("data-i18n-aria");
+      if (dict[k] != null) el.setAttribute("aria-label", dict[k]);
+    });
+    if (dict["meta.title"]) document.title = dict["meta.title"];
+    var m = document.querySelector('meta[name="description"]');
+    if (m && dict["meta.description"]) m.setAttribute("content", dict["meta.description"]);
+    var tb = document.querySelector("[data-theme-toggle]");
+    if (tb) tb.setAttribute("aria-label", t(document.documentElement.getAttribute("data-theme") === "dark" ? "theme.light" : "theme.dark"));
+  }
+
+  function applyLang(lang, save) {
+    if (!DICT[lang]) lang = "zh";
+    currentLang = lang;
+    if (save !== false) { try { localStorage.setItem("lyu-lang", lang); } catch (e) {} }
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+    var sel = document.querySelector("[data-lang-select]");
+    if (sel) sel.value = lang;
+    applyI18n();
+  }
+
+  /* ============ 主题 ============ */
+  function setTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    try { localStorage.setItem("lyu-theme", theme); } catch (e) {}
+    var tb = document.querySelector("[data-theme-toggle]");
+    if (tb) tb.setAttribute("aria-label", t(theme === "dark" ? "theme.light" : "theme.dark"));
+  }
+
+  /* ============ 事件 ============ */
+  var themeBtn = document.querySelector("[data-theme-toggle]");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var cur = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      setTheme(cur === "dark" ? "light" : "dark");
+    });
+  }
+  var langSel = document.querySelector("[data-lang-select]");
+  if (langSel) {
+    langSel.addEventListener("change", function () { applyLang(langSel.value, true); });
+  }
+
+  /* 下载卡高亮（来自产品卡 CTA 跳转） */
+  document.addEventListener("click", function (e) {
+    var el = e.target && e.target.closest ? e.target.closest("[data-target-card]") : null;
+    if (!el) return;
+    var card = document.getElementById(el.getAttribute("data-target-card"));
+    if (card) {
+      card.classList.remove("highlight");
+      void card.offsetWidth;
+      card.classList.add("highlight");
+      window.setTimeout(function () { card.classList.remove("highlight"); }, 2000);
+    }
+  });
+
+  /* 滚动显现 */
+  var revealEls = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window)) {
+    revealEls.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ============ 初始化 ============ */
+  var savedLang = null;
+  try { savedLang = localStorage.getItem("lyu-lang"); } catch (e) {}
+  applyLang(savedLang && DICT[savedLang] ? savedLang : "zh", false);
+  renderReleases();
+})();
+</script>
+
+</body>
+</html>
